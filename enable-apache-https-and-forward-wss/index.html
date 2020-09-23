@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html>
+<head hexo-theme='https://volantis.js.org/#3.0-beta'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+  <title>CentOS 7 + Apache 配置https + wss转发 - chenwuai&#39;blog</title>
+  
+    <meta name="keywords" content="centos7,apache,https,wss">
+  
+
+  
+    <meta name="description" content="安装openssl库1.检查是否已安装 openssl
+1234openssl version -a# 打印出下面类似的信息表明已安装# OpenSSL 1.0.2k-fips  26 Jan 2017.....# built on: reproducible build, date unspecified">
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13/css/all.min.css">
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+
+  
+
+  
+    <link rel="shortcut icon" type='image/x-icon' href="https://cdn.jsdelivr.net/gh/chenchenwuai/assets/images/favicon.ico">
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  
+  
+</head>
+
+<body>
+  
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post' style="display: none;">
+      <div class='cover-body'>
+  <div class='a'>
+    
+    
+      <p class="title">chenwuai</p>
+    
+    
+      <p class="subtitle">chenwuai blog</p>
+    
+  </div>
+  <div class='b'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <ul class='cover-list-h'>
+        
+          
+            <li>
+              <a class="nav home"
+                href="/"
+                
+                
+                id="home">
+                首页
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="/archives/"
+                
+                
+                id="archives">
+                归档
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="/categories/"
+                
+                
+                id="categories">
+                分类
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="/tags/"
+                
+                
+                id="tags">
+                标签
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="/recommends/"
+                
+                
+                id="recommends">
+                收藏
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="/about/"
+                
+                
+                id="about">
+                关于
+              </a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+      <div class="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+    </cover>
+    <header class="l_header shadow blur">
+  <div class='container'>
+  <div class='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h'>
+        <li><a class="s-comment fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+            chenwuai
+          
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  首页
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  首页
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+  </div>
+  
+
+  <div class="l_body nocover">
+    <div class='body-wrapper' id="pjax-container">
+      
+        <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+
+
+<div id="pjax-data" style="display: none">
+  <div id="pjax-ispage">true</div>
+  <div id="pjax-pageTitle">CentOS 7 + Apache 配置https + wss转发</div>
+  <div id="pjax-enable-cover">true</div>
+  
+  <div id="valine-path">none</div>
+  <div id="valine-placeholder">none</div>
+  
+  
+</div>
+
+
+<script>
+  // 处理封面 此时 jquery 还没加载
+  if ("none" == "none") { // 移除封面
+    document.getElementsByClassName('cover')[0].style.display = "none";
+    document.getElementsByClassName('l_body')[0].classList.add("nocover");
+    document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.add("show");
+  } else {
+    if ("none" == "blog") { // 半屏
+      document.getElementsByClassName('cover')[0].classList.remove("full");
+      document.getElementsByClassName('cover')[0].classList.add("half");
+      document.getElementsByClassName('scroll-down')[0].style.display = "none";
+    } else if ("none" == "docs") { // 全屏
+      document.getElementsByClassName('cover')[0].classList.remove("half");
+      document.getElementsByClassName('cover')[0].classList.add("full");
+      document.getElementsByClassName('scroll-down')[0].style.display = "";
+    }
+    document.getElementsByClassName('cover')[0].style.display = "";
+    document.getElementsByClassName('l_body', 'show')[0].classList.remove("nocover");
+    document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.remove("show");
+  }
+</script>
+
+      
+      
+
+<div class='l_main'>
+  
+
+  
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h1 class="title">
+    <a href="/enable-apache-https-and-forward-wss/">
+      CentOS 7 + Apache 配置https + wss转发
+    </a>
+  </h1>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="/" rel="nofollow">
+    <img no-lazy src="https://i.loli.net/2020/07/02/JKNsSczEb68Rlvj.gif">
+    <p>chenwuai</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/apache/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>apache</p>
+    </a>
+  </div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>2019-04-06 09:08</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  <div class="new-meta-item wordcount">
+    <a class='notlink'>
+      <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
+      <p>字数：2.1k字</p>
+    </a>
+  </div>
+  <div class="new-meta-item readtime">
+    <a class='notlink'>
+      <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
+      <p>时长：11分钟</p>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          <h3 id="安装openssl库"><a href="#安装openssl库" class="headerlink" title="安装openssl库"></a>安装openssl库</h3><p>1.检查是否已安装 <code>openssl</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">openssl version -a</span><br><span class="line"><span class="comment"># 打印出下面类似的信息表明已安装</span></span><br><span class="line"><span class="comment"># OpenSSL 1.0.2k-fips  26 Jan 2017.....</span></span><br><span class="line"><span class="comment"># built on: reproducible build, date unspecified</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<blockquote>
+<p>如果未安装，可以使用  <code>yum install openssl</code> 或参考其他方式</p>
+</blockquote>
+<p>2.检查apache是否已安装ssl模块</p>
+<blockquote>
+<p>查看  <code>/etc/httpd/conf.d/ssl.conf</code> 文件是否存在，如果不存在 使用命令安装 </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install mod_ssl</span><br></pre></td></tr></table></figure>
+
+<p>3.检查是否已启用apache的 <code>proxy</code>模块</p>
+<blockquote>
+<p>打开 <code>/etc/httpd/conf.modules.d/</code>文件夹，查看是否存在 <code>proxy.conf</code> 文件名(有可能是<code>00-proxy.conf</code>)的文件,如果不存在，可能需要重新编译安装apache，请联系服务器维护人员。如果存在查看时候有一下代码</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LoadModule proxy_module modules/mod_proxy.so</span><br><span class="line">LoadModule proxy_http_module modules/mod_proxy_http.so</span><br><span class="line">LoadModule proxy_wstunnel_module modules/mod_proxy_wstunnel.so</span><br><span class="line">LoadModule proxy_connect_module modules/mod_proxy_connect.so</span><br></pre></td></tr></table></figure>
+<p>不存在请联系服务器维护人员</p>
+<h3 id="生成ssl证书"><a href="#生成ssl证书" class="headerlink" title="生成ssl证书"></a>生成ssl证书</h3><p>1.如果没有证书文件，可以创建本地文件测试</p>
+<blockquote>
+<p>输入命令，生成2048位加密私钥 </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl genrsa -out server1.key 2048</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>然后输入命令，生成证书签名请求（CSR），这里需要填写许多信息，如国家，省市，公司，域名等，<code>域名</code> 必须填写正确，其他可以随便填写</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl req -new -key server1.key -out server1.csr</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>最后输入命令，生成类型为X509的自签名证书。有效期设置3650天，即有效期为10年</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 -req -days 3650 -<span class="keyword">in</span> server1.csr -signkey server1.key -out server1.crt</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>参考文件连接 <a href="https://www.linuxidc.com/Linux/2018-08/153555.htm" target="_blank" rel="noopener">https://www.linuxidc.com/Linux/2018-08/153555.htm</a></p>
+</blockquote>
+<p>2.移动证书文件</p>
+<blockquote>
+<p>在 <code>/etc/httpd/</code>文件夹下面创建一个 crt文件夹，将提供的证书文件移动到里面。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xxxx.crt <span class="comment"># 证书文件</span></span><br><span class="line">xxxx.key <span class="comment"># 证书秘钥文件</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="配置ssl"><a href="#配置ssl" class="headerlink" title="配置ssl"></a>配置ssl</h3><blockquote>
+<p>打开 <code>/etc/httpd/conf.d/ssl.conf</code> 文件，找到 <code>&lt;VirtualHost _default_:443&gt;</code> 这一行，在其后面添加</p>
+</blockquote>
+<figure class="highlight apache"><figcaption><span>ssl.conf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute"><span class="nomarkup">DocumentRoot</span></span> <span class="string">"/var/www/html"</span> # 指向web的地址，一般不需要修改</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置域名，域名必须和证书的名称一致 </span></span><br><span class="line"><span class="comment"># 例如 aaaa.com  -&gt; ServerName aaaa.com:443</span></span><br><span class="line"><span class="attribute"><span class="nomarkup">ServerName</span></span> www.example.com:443</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>然后找到 <code>SSLEngine on</code> 这一行代码，在下面添加</p>
+</blockquote>
+<figure class="highlight apache"><figcaption><span>ssl.conf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">SSLProxyEngine</span> <span class="literal">on</span></span><br><span class="line"><span class="attribute">ProxyRequests</span> <span class="literal">Off</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 转发 streams流</span></span><br><span class="line"><span class="attribute">ProxyPass</span> /streams http://127.0.0.1:6666/streams</span><br><span class="line"><span class="comment"># 状态码302相关</span></span><br><span class="line"><span class="attribute">ProxyPassReverse</span> /streams http://127.0.0.1:6666/streams</span><br><span class="line"></span><br><span class="line"><span class="comment"># 转发wss 协议到 ws协议</span></span><br><span class="line"><span class="attribute">ProxyPass</span> /wss ws://127.0.0.1:8888</span><br><span class="line"><span class="comment"># 状态码302相关</span></span><br><span class="line"><span class="attribute">ProxyPassReverse</span> /wss ws://127.0.0.1:8888</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>然后找到 <code>SSLHonorCipherOrder on</code>这行代码把前面的 # 号去掉</p>
+</blockquote>
+<blockquote>
+<p>然后找到 <code>SSLCertificateFile /etc/pki/tls/certs/localhost.crt</code> 把里面的文件地址改为证书文件crt文件的地址<code>/etc/httpd/crt/xxxx.crt</code></p>
+</blockquote>
+<blockquote>
+<p>然后找到 <code>SSLCertificateKeyFile /etc/pki/tls/private/localhost.key</code> 把里面的文件地址改为证书秘钥文件key文件的地址<code>/etc/httpd/crt/xxxx.key</code></p>
+</blockquote>
+<blockquote>
+<p>然后保存，重启httpd服务 <code>systemctl restart httpd</code></p>
+</blockquote>
+<hr>
+<details ><summary> <p>配置过的ssl.conf文件 可参考</p> </summary>
+              <div class='content'>
+              <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">#</span></span><br><span class="line"><span class="comment"># When we also provide SSL we have to listen to the </span></span><br><span class="line"><span class="comment"># the HTTPS port in addition.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">Listen 443 https</span><br><span class="line"></span><br><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="comment">##  SSL Global Context</span></span><br><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="comment">##  All SSL configuration in this context applies both to</span></span><br><span class="line"><span class="comment">##  the main server and all SSL-enabled virtual hosts.</span></span><br><span class="line"><span class="comment">##</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#   Pass Phrase Dialog:</span></span><br><span class="line"><span class="comment">#   Configure the pass phrase gathering process.</span></span><br><span class="line"><span class="comment">#   The filtering dialog program (`builtin' is a internal</span></span><br><span class="line"><span class="comment">#   terminal dialog) has to provide the pass phrase on stdout.</span></span><br><span class="line">SSLPassPhraseDialog <span class="built_in">exec</span>:/usr/libexec/httpd-ssl-pass-dialog</span><br><span class="line"></span><br><span class="line"><span class="comment">#   Inter-Process Session Cache:</span></span><br><span class="line"><span class="comment">#   Configure the SSL Session Cache: First the mechanism </span></span><br><span class="line"><span class="comment">#   to use and second the expiring timeout (in seconds).</span></span><br><span class="line">SSLSessionCache         shmcb:/run/httpd/sslcache(512000)</span><br><span class="line">SSLSessionCacheTimeout  300</span><br><span class="line"></span><br><span class="line"><span class="comment">#   Pseudo Random Number Generator (PRNG):</span></span><br><span class="line"><span class="comment">#   Configure one or more sources to seed the PRNG of the </span></span><br><span class="line"><span class="comment">#   SSL library. The seed data should be of good random quality.</span></span><br><span class="line"><span class="comment">#   WARNING! On some platforms /dev/random blocks if not enough entropy</span></span><br><span class="line"><span class="comment">#   is available. This means you then cannot use the /dev/random device</span></span><br><span class="line"><span class="comment">#   because it would lead to very long connection times (as long as</span></span><br><span class="line"><span class="comment">#   it requires to make more entropy available). But usually those</span></span><br><span class="line"><span class="comment">#   platforms additionally provide a /dev/urandom device which doesn't</span></span><br><span class="line"><span class="comment">#   block. So, if available, use this one instead. Read the mod_ssl User</span></span><br><span class="line"><span class="comment">#   Manual for more details.</span></span><br><span class="line">SSLRandomSeed startup file:/dev/urandom  256</span><br><span class="line">SSLRandomSeed connect <span class="built_in">builtin</span></span><br><span class="line"><span class="comment">#SSLRandomSeed startup file:/dev/random  512</span></span><br><span class="line"><span class="comment">#SSLRandomSeed connect file:/dev/random  512</span></span><br><span class="line"><span class="comment">#SSLRandomSeed connect file:/dev/urandom 512</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Use "SSLCryptoDevice" to enable any supported hardware</span></span><br><span class="line"><span class="comment"># accelerators. Use "openssl engine -v" to list supported</span></span><br><span class="line"><span class="comment"># engine names.  <span class="doctag">NOTE:</span> If you enable an accelerator and the</span></span><br><span class="line"><span class="comment"># server does not start, consult the error logs and ensure</span></span><br><span class="line"><span class="comment"># your accelerator is functioning properly. </span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">SSLCryptoDevice <span class="built_in">builtin</span></span><br><span class="line"><span class="comment">#SSLCryptoDevice ubsec</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="comment">## SSL Virtual Host Context</span></span><br><span class="line"><span class="comment">##</span></span><br><span class="line"></span><br><span class="line">&lt;VirtualHost _default_:443&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># General setup for the virtual host, inherited from global configuration</span></span><br><span class="line">DocumentRoot <span class="string">"/var/www/html"</span></span><br><span class="line">ServerName aaaaaaaaaa.com:443</span><br><span class="line"></span><br><span class="line"><span class="comment"># Use separate log files for the SSL virtual host; note that LogLevel</span></span><br><span class="line"><span class="comment"># is not inherited from httpd.conf.</span></span><br><span class="line">ErrorLog logs/ssl_error_log</span><br><span class="line">TransferLog logs/ssl_access_log</span><br><span class="line">LogLevel warn</span><br><span class="line"></span><br><span class="line"><span class="comment">#   SSL Engine Switch:</span></span><br><span class="line"><span class="comment">#   Enable/Disable SSL for this virtual host.</span></span><br><span class="line">SSLEngine on</span><br><span class="line"></span><br><span class="line">SSLProxyEngine on</span><br><span class="line"></span><br><span class="line">ProxyRequests Off</span><br><span class="line"> </span><br><span class="line">ProxyPass /streams http://127.0.0.1:3096/streams</span><br><span class="line"> </span><br><span class="line">ProxyPassReverse /streams http://127.0.0.1:3096/streams</span><br><span class="line"></span><br><span class="line">ProxyPass /wss ws://127.0.0.1:3098</span><br><span class="line"> </span><br><span class="line">ProxyPassReverse /wss ws://127.0.0.1:3098</span><br><span class="line"></span><br><span class="line"><span class="comment">#   SSL Protocol support:</span></span><br><span class="line"><span class="comment"># List the enable protocol levels with which clients will be able to</span></span><br><span class="line"><span class="comment"># connect.  Disable SSLv2 access by default:</span></span><br><span class="line">SSLProtocol all -SSLv2 -SSLv3</span><br><span class="line"></span><br><span class="line"><span class="comment">#   SSL Cipher Suite:</span></span><br><span class="line"><span class="comment">#   List the ciphers that the client is permitted to negotiate.</span></span><br><span class="line"><span class="comment">#   See the mod_ssl documentation for a complete list.</span></span><br><span class="line">SSLCipherSuite HIGH:3DES:!aNULL:!MD5:!SEED:!IDEA</span><br><span class="line"></span><br><span class="line"><span class="comment">#   Speed-optimized SSL Cipher configuration:</span></span><br><span class="line"><span class="comment">#   If speed is your main concern (on busy HTTPS servers e.g.),</span></span><br><span class="line"><span class="comment">#   you might want to force clients to specific, performance</span></span><br><span class="line"><span class="comment">#   optimized ciphers. In this case, prepend those ciphers</span></span><br><span class="line"><span class="comment">#   to the SSLCipherSuite list, and enable SSLHonorCipherOrder.</span></span><br><span class="line"><span class="comment">#   Caveat: by giving precedence to RC4-SHA and AES128-SHA</span></span><br><span class="line"><span class="comment">#   (as in the example below), most connections will no longer</span></span><br><span class="line"><span class="comment">#   have perfect forward secrecy - if the server's key is</span></span><br><span class="line"><span class="comment">#   compromised, captures of past or future traffic must be</span></span><br><span class="line"><span class="comment">#   considered compromised, too.</span></span><br><span class="line"><span class="comment">#SSLCipherSuite RC4-SHA:AES128-SHA:HIGH:MEDIUM:!aNULL:!MD5</span></span><br><span class="line">SSLHonorCipherOrder on </span><br><span class="line"></span><br><span class="line"><span class="comment">#   Server Certificate:</span></span><br><span class="line"><span class="comment"># Point SSLCertificateFile at a PEM encoded certificate.  If</span></span><br><span class="line"><span class="comment"># the certificate is encrypted, then you will be prompted for a</span></span><br><span class="line"><span class="comment"># pass phrase.  Note that a kill -HUP will prompt again.  A new</span></span><br><span class="line"><span class="comment"># certificate can be generated using the genkey(1) command.</span></span><br><span class="line">SSLCertificateFile /etc/httpd/crt/server1.crt</span><br><span class="line"></span><br><span class="line"><span class="comment">#   Server Private Key:</span></span><br><span class="line"><span class="comment">#   If the key is not combined with the certificate, use this</span></span><br><span class="line"><span class="comment">#   directive to point at the key file.  Keep in mind that if</span></span><br><span class="line"><span class="comment">#   you've both a RSA and a DSA private key you can configure</span></span><br><span class="line"><span class="comment">#   both in parallel (to also allow the use of DSA ciphers, etc.)</span></span><br><span class="line">SSLCertificateKeyFile /etc/httpd/crt/server1.key</span><br><span class="line"></span><br><span class="line"><span class="comment">#   Server Certificate Chain:</span></span><br><span class="line"><span class="comment">#   Point SSLCertificateChainFile at a file containing the</span></span><br><span class="line"><span class="comment">#   concatenation of PEM encoded CA certificates which form the</span></span><br><span class="line"><span class="comment">#   certificate chain for the server certificate. Alternatively</span></span><br><span class="line"><span class="comment">#   the referenced file can be the same as SSLCertificateFile</span></span><br><span class="line"><span class="comment">#   when the CA certificates are directly appended to the server</span></span><br><span class="line"><span class="comment">#   certificate for convinience.</span></span><br><span class="line"><span class="comment">#SSLCertificateChainFile /etc/pki/tls/certs/server-chain.crt</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#   Certificate Authority (CA):</span></span><br><span class="line"><span class="comment">#   Set the CA certificate verification path where to find CA</span></span><br><span class="line"><span class="comment">#   certificates for client authentication or alternatively one</span></span><br><span class="line"><span class="comment">#   huge file containing all of them (file must be PEM encoded)</span></span><br><span class="line"><span class="comment">#SSLCACertificateFile /etc/pki/tls/certs/ca-bundle.crt</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#   Client Authentication (Type):</span></span><br><span class="line"><span class="comment">#   Client certificate verification type and depth.  Types are</span></span><br><span class="line"><span class="comment">#   none, optional, require and optional_no_ca.  Depth is a</span></span><br><span class="line"><span class="comment">#   number which specifies how deeply to verify the certificate</span></span><br><span class="line"><span class="comment">#   issuer chain before deciding the certificate is not valid.</span></span><br><span class="line"><span class="comment">#SSLVerifyClient require</span></span><br><span class="line"><span class="comment">#SSLVerifyDepth  10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#   Access Control:</span></span><br><span class="line"><span class="comment">#   With SSLRequire you can do per-directory access control based</span></span><br><span class="line"><span class="comment">#   on arbitrary complex boolean expressions containing server</span></span><br><span class="line"><span class="comment">#   variable checks and other lookup directives.  The syntax is a</span></span><br><span class="line"><span class="comment">#   mixture between C and Perl.  See the mod_ssl documentation</span></span><br><span class="line"><span class="comment">#   for more details.</span></span><br><span class="line"><span class="comment">#&lt;Location /&gt;</span></span><br><span class="line"><span class="comment">#SSLRequire (    %&#123;SSL_CIPHER&#125; !~ m/^(EXP|NULL)/ \</span></span><br><span class="line"><span class="comment">#            and %&#123;SSL_CLIENT_S_DN_O&#125; eq "Snake Oil, Ltd." \</span></span><br><span class="line"><span class="comment">#            and %&#123;SSL_CLIENT_S_DN_OU&#125; in &#123;"Staff", "CA", "Dev"&#125; \</span></span><br><span class="line"><span class="comment">#            and %&#123;TIME_WDAY&#125; &gt;= 1 and %&#123;TIME_WDAY&#125; &lt;= 5 \</span></span><br><span class="line"><span class="comment">#            and %&#123;TIME_HOUR&#125; &gt;= 8 and %&#123;TIME_HOUR&#125; &lt;= 20       ) \</span></span><br><span class="line"><span class="comment">#           or %&#123;REMOTE_ADDR&#125; =~ m/^192\.76\.162\.[0-9]+$/</span></span><br><span class="line"><span class="comment">#&lt;/Location&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#   SSL Engine Options:</span></span><br><span class="line"><span class="comment">#   Set various options for the SSL engine.</span></span><br><span class="line"><span class="comment">#   o FakeBasicAuth:</span></span><br><span class="line"><span class="comment">#     Translate the client X.509 into a Basic Authorisation.  This means that</span></span><br><span class="line"><span class="comment">#     the standard Auth/DBMAuth methods can be used for access control.  The</span></span><br><span class="line"><span class="comment">#     user name is the `one line' version of the client's X.509 certificate.</span></span><br><span class="line"><span class="comment">#     Note that no password is obtained from the user. Every entry in the user</span></span><br><span class="line"><span class="comment">#     file needs this password: `xxj31ZMTZzkVA'.</span></span><br><span class="line"><span class="comment">#   o ExportCertData:</span></span><br><span class="line"><span class="comment">#     This exports two additional environment variables: SSL_CLIENT_CERT and</span></span><br><span class="line"><span class="comment">#     SSL_SERVER_CERT. These contain the PEM-encoded certificates of the</span></span><br><span class="line"><span class="comment">#     server (always existing) and the client (only existing when client</span></span><br><span class="line"><span class="comment">#     authentication is used). This can be used to import the certificates</span></span><br><span class="line"><span class="comment">#     into CGI scripts.</span></span><br><span class="line"><span class="comment">#   o StdEnvVars:</span></span><br><span class="line"><span class="comment">#     This exports the standard SSL/TLS related `SSL_*' environment variables.</span></span><br><span class="line"><span class="comment">#     Per default this exportation is switched off for performance reasons,</span></span><br><span class="line"><span class="comment">#     because the extraction step is an expensive operation and is usually</span></span><br><span class="line"><span class="comment">#     useless for serving static content. So one usually enables the</span></span><br><span class="line"><span class="comment">#     exportation for CGI and SSI requests only.</span></span><br><span class="line"><span class="comment">#   o StrictRequire:</span></span><br><span class="line"><span class="comment">#     This denies access when "SSLRequireSSL" or "SSLRequire" applied even</span></span><br><span class="line"><span class="comment">#     under a "Satisfy any" situation, i.e. when it applies access is denied</span></span><br><span class="line"><span class="comment">#     and no other module can change it.</span></span><br><span class="line"><span class="comment">#   o OptRenegotiate:</span></span><br><span class="line"><span class="comment">#     This enables optimized SSL connection renegotiation handling when SSL</span></span><br><span class="line"><span class="comment">#     directives are used in per-directory context. </span></span><br><span class="line"><span class="comment">#SSLOptions +FakeBasicAuth +ExportCertData +StrictRequire</span></span><br><span class="line">&lt;Files ~ <span class="string">"\.(cgi|shtml|phtml|php3?)$"</span>&gt;</span><br><span class="line">    SSLOptions +StdEnvVars</span><br><span class="line">&lt;/Files&gt;</span><br><span class="line">&lt;Directory <span class="string">"/var/www/cgi-bin"</span>&gt;</span><br><span class="line">    SSLOptions +StdEnvVars</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">#   SSL Protocol Adjustments:</span></span><br><span class="line"><span class="comment">#   The safe and default but still SSL/TLS standard compliant shutdown</span></span><br><span class="line"><span class="comment">#   approach is that mod_ssl sends the close notify alert but doesn't wait for</span></span><br><span class="line"><span class="comment">#   the close notify alert from client. When you need a different shutdown</span></span><br><span class="line"><span class="comment">#   approach you can use one of the following variables:</span></span><br><span class="line"><span class="comment">#   o ssl-unclean-shutdown:</span></span><br><span class="line"><span class="comment">#     This forces an unclean shutdown when the connection is closed, i.e. no</span></span><br><span class="line"><span class="comment">#     SSL close notify alert is send or allowed to received.  This violates</span></span><br><span class="line"><span class="comment">#     the SSL/TLS standard but is needed for some brain-dead browsers. Use</span></span><br><span class="line"><span class="comment">#     this when you receive I/O errors because of the standard approach where</span></span><br><span class="line"><span class="comment">#     mod_ssl sends the close notify alert.</span></span><br><span class="line"><span class="comment">#   o ssl-accurate-shutdown:</span></span><br><span class="line"><span class="comment">#     This forces an accurate shutdown when the connection is closed, i.e. a</span></span><br><span class="line"><span class="comment">#     SSL close notify alert is send and mod_ssl waits for the close notify</span></span><br><span class="line"><span class="comment">#     alert of the client. This is 100% SSL/TLS standard compliant, but in</span></span><br><span class="line"><span class="comment">#     practice often causes hanging connections with brain-dead browsers. Use</span></span><br><span class="line"><span class="comment">#     this only for browsers where you know that their SSL implementation</span></span><br><span class="line"><span class="comment">#     works correctly. </span></span><br><span class="line"><span class="comment">#   Notice: Most problems of broken clients are also related to the HTTP</span></span><br><span class="line"><span class="comment">#   keep-alive facility, so you usually additionally want to disable</span></span><br><span class="line"><span class="comment">#   keep-alive for those clients, too. Use variable "nokeepalive" for this.</span></span><br><span class="line"><span class="comment">#   Similarly, one has to force some clients to use HTTP/1.0 to workaround</span></span><br><span class="line"><span class="comment">#   their broken HTTP/1.1 implementation. Use variables "downgrade-1.0" and</span></span><br><span class="line"><span class="comment">#   "force-response-1.0" for this.</span></span><br><span class="line">BrowserMatch <span class="string">"MSIE [2-5]"</span> \</span><br><span class="line">         nokeepalive ssl-unclean-shutdown \</span><br><span class="line">         downgrade-1.0 force-response-1.0</span><br><span class="line"></span><br><span class="line"><span class="comment">#   Per-Server Logging:</span></span><br><span class="line"><span class="comment">#   The home of a custom SSL log file. Use this when you want a</span></span><br><span class="line"><span class="comment">#   compact non-error SSL logfile on a virtual host basis.</span></span><br><span class="line">CustomLog logs/ssl_request_log \</span><br><span class="line">          <span class="string">"%t %h %&#123;SSL_PROTOCOL&#125;x %&#123;SSL_CIPHER&#125;x \"%r\" %b"</span></span><br><span class="line"></span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+              </div>
+            </details>
+          
+            <div class='article_footer'>
+              
+                
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
+  <div class='content'>
+    
+      <blockquote>
+        
+          
+            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+          
+        
+      </blockquote>
+    
+  </div>
+</section>
+
+  
+
+
+              
+            </div>
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-11T17:34:44+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2020-09-11 17:34</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/centos7/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>centos7</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/apache/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>apache</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/https/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>https</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/wss/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>wss</p></a></div>
+
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://chenchenwuai.github.io/enable-apache-https-and-forward-wss/&title=CentOS 7 + Apache 配置https + wss转发 - chenwuai'blog&summary=安装openssl库1.检查是否已安装 openssl
+1234openssl version -a# 打印出下面类似的信息表明已安装# OpenSSL 1.0.2k-fips  26 Jan 2017.....# built on: reproducible build, date unspecified"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=https://chenchenwuai.github.io/enable-apache-https-and-forward-wss/&title=CentOS 7 + Apache 配置https + wss转发 - chenwuai'blog&summary=安装openssl库1.检查是否已安装 openssl
+1234openssl version -a# 打印出下面类似的信息表明已安装# OpenSSL 1.0.2k-fips  26 Jan 2017.....# built on: reproducible build, date unspecified"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+              <a class='prev' href='/mysql-remote-can-not-login/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>mysql root账户远程不能登录解决方法</p>
+                <p class='content'>原因mysql 远程不能登录一般是没有设置 host 为 % 或者对应的ip地址这种情况下一般是通过修改原来 root 账户的 host 为 % 来进行远程登录，但是这种设置也是有一个缺点，就是...</p>
+              </a>
+            
+            
+              <a class='next' href='/change-mysql-root-password/'>
+                <p class='title'>忘记 Mysql root账户密码如何修改<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>关闭mysql登录验证打开命令行界面 然后输入打开 my.cnf 配置文件的命令
+1vim /etc/my.cnf
+
+
+在 [mysqld] 的段中加上一句：skip-grant-tables ...</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
+      
+      
+      
+      
+      
+      
+        <section id="comments">
+          <div id="valine_container" class="valine_thread">
+            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+  <section class="widget toc-wrapper shadow desktop mobile">
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装openssl库"><span class="toc-text">安装openssl库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生成ssl证书"><span class="toc-text">生成ssl证书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置ssl"><span class="toc-text">配置ssl</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+    </div>
+    
+  
+  <footer class="clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='340px'
+      server='netease'
+      type='playlist'
+      id='3175833810'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+              <a href="mailto:zccjxx62@gmail.com"
+                class="social fas fa-envelope flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://github.com/chenchenwuai"
+                class="social fab fa-github flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://music.163.com/#/user/home?id=110896778"
+                class="social fas fa-headphones-alt flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+        </div>
+      
+    
+      
+        <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+      
+    
+      
+        本站使用
+        <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
+        作为主题，总访问量为
+          <span id="busuanzi_value_site_pv"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+          次
+        
+      
+    
+      
+        <div class='copyright'>
+        <p>[Copyright © 2017-2020 chenwuai]</p>
+
+        </div>
+      
+    
+  </footer>
+
+
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <div>
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4/dist/jquery.min.js"></script>
+
+
+
+  <script>
+    
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/" || "/";
+    if (!ROOT.endsWith('/')) ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/instant_page.js" type="module" defer
+          integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+
+
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+      $(function(){
+        var imgs=["https://cdn.jsdelivr.net/gh/xaoxuu/cdn-wallpaper/abstract/BBC19066-E176-47C2-9D22-48C81EE5DF6B.jpeg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+        if ('') {
+          $('').backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        } else {
+          $.backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js"></script>
+
+  
+
+
+<!--PS：只对 valine 做了 Pjax 兼容-->
+
+
+
+
+
+
+
+  
+    
+<script src="/js/valine.js"></script>
+
+  
+  <script>
+    var GUEST_INFO = ['nick', 'mail', 'link'];
+    var meta = 'nick,mail,link'.split(',').filter(function (item) {
+      return GUEST_INFO.indexOf(item) > -1
+    });
+    var REQUIRED_FIELDS = ['nick', 'mail', 'link'];
+    var requiredFields = 'nick,mail'.split(',').filter(function (item) {
+      return REQUIRED_FIELDS.indexOf(item) > -1
+    });
+
+    function emoji(path, idx, ext) {
+      return path + "/" + path + "-" + idx + "." + ext;
+    }
+
+    var emojiMaps = {};
+    for (var i = 1; i <= 54; i++) {
+      emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+    }
+    for (var i = 1; i <= 101; i++) {
+      emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+    }
+    for (var i = 1; i <= 116; i++) {
+      emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+    }
+    for (var i = 1; i <= 125; i++) {
+      emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+    }
+    for (var i = 1; i <= 4; i++) {
+      emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+    }
+
+    function pjax_valine() {
+      var valinePath = $.trim($('#valine-path').text()) === "none" ?
+              window.location.pathname : $.trim($('#valine-path').text());
+
+      var valinePlaceholder = $.trim($('#valine-placeholder').text()) === "none" ?
+              "快来评论吧~" : $.trim($('#valine-placeholder').text());
+
+      var ALLPATH = '';
+      if(ALLPATH != '') valinePath = ALLPATH;
+
+      var valine = new Valine();
+      valine.init({
+        el: '#valine_container',
+        meta: meta,
+        placeholder: valinePlaceholder,
+        path: valinePath,
+        appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
+        appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
+        pageSize: '10',
+        avatar: 'robohash',
+        lang: 'zh-cn',
+        visitor: 'true',
+        highlight: 'true',
+        mathJax: 'false',
+        enableQQ: 'true',
+        requiredFields: requiredFields,
+        emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
+        emojiMaps: emojiMaps
+      })
+    }
+
+    $(function () {
+      pjax_valine();
+    });
+  </script>
+
+
+
+<!-- 复制 -->
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    function wait(callback, seconds) {
+        var timelag = null;
+        timelag = window.setTimeout(callback, seconds)
+    }
+
+    function pjax_initCopyCode() {
+        var copyHtml = '';
+        copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+        copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+        copyHtml += '</button>';
+        $(".highlight .code pre").before(copyHtml);
+        $(".article pre code").before(copyHtml);
+        var clipboard = new ClipboardJS('.btn-copy', {
+            target: function (trigger) {
+                return trigger.nextElementSibling
+            }
+        });
+        clipboard.on('success', function (e) {
+            let $btn = $(e.trigger);
+            $btn.addClass('copied');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-check-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPIED';
+            wait(function () {
+                $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        });
+        clipboard.on('error', function (e) {
+            e.clearSelection();
+            let $btn = $(e.trigger);
+            $btn.addClass('copy-failed');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-times-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPY FAILED';
+            wait(function () {
+                $icon.removeClass('fa-times-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        })
+    }
+    $(function () {
+        pjax_initCopyCode()
+    });
+</script>
+
+
+<!--scrollreveal -->
+
+  <script src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    function pjax_scrollrebeal() {
+      ScrollReveal().reveal('.l_main .reveal', {
+        distance: '8px',
+        duration: '800',
+        interval: '100',
+        scale: '1'
+      });
+    }
+
+    $(function () {
+      pjax_scrollrebeal();
+    });
+  </script>
+
+<!-- ******************************** -->
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  function pjax_fancybox() {
+    $(".article-entry").find("img").not('.inline').not('a img').each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".article-entry").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  $(function () {
+    pjax_fancybox();
+  });
+</script>
+
+<!-- ******************************** -->
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+
+  
+    
+<script src="/js/search.js"></script>
+
+  
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js" data-pjax></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+
+  <script type="text/javascript">
+    $(function () {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/comment_typing.js"></script>
+
+
+
+
+
+
+
+    
+      
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+<!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+    <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+    <div id="loading-bar-wrapper"><script>NProgress.configure({parent:"#loading-bar-wrapper",trickleSpeed: 100})</script></div>
+    <script>
+      window.ShowLoading = function() {
+        NProgress.start();
+      };
+      window.HideLoading = function() {
+        NProgress.done();
+      }
+    </script>
+  
+</div>
+
+<script>  
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#pjax-container"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+  
+    document.addEventListener('pjax:send', function () {
+      window.stop(); // 相当于点击了浏览器的停止按钮
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      $.fancybox.close();    // 关闭弹窗
+      $('.nav-main').find('.list-v').not('.menu-phone').css("display","none"); // 移除小尾巴
+      $('.menu-phone.list-v').css("display","none"); // 移除小尾巴
+      $('.l_header .switcher .s-search').removeClass('active'); // 关闭移动端激活的搜索框
+      $('.l_header').removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      $('.wrapper').removeClass('sub'); // 跳转页面时关闭二级导航
+      $(window).unbind('resize');    // 解绑
+      $(window).unbind('scroll');    // 解绑
+      $(window).unbind('click');     // 解绑
+      $(document).unbind('scroll');  // 解绑
+      window.ShowLoading();
+    });
+  
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+      // 
+  
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+      
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+  
+      try{
+        pjax_fancybox();
+        
+          
+          if ('') {
+            $('').backstretch("resize");
+          } else {
+            $.backstretch("resize");
+          }
+        
+        
+          pjax_scrollrebeal();
+        
+        
+          pjax_initCopyCode();
+        
+        
+          pjax_valine();
+        
+        
+      } catch (e) {
+        console.log(e);
+      }
+      window.HideLoading();
+    });
+  
+    document.addEventListener('pjax:error', function () {
+      window.HideLoading();
+      window.location.href = event.triggerElement.href;
+    });
+</script>
+  
+    
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"left","width":110,"height":260},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
