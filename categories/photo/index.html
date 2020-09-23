@@ -5,6 +5,8 @@
   <!-- SEO相关 -->
   
     
+      <meta name="robots" content="noindex,follow">
+    
   
   <!-- 渲染优化 -->
   <meta name="renderer" content="webkit">
@@ -16,13 +18,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>mysql root账户远程不能登录解决方法 - chenwuai&#39;blog</title>
-  
-    <meta name="keywords" content="mysql">
+  <title>分类：photo - chenwuai&#39;blog</title>
   
 
-  
-    <meta name="description" content="原因mysql 远程不能登录一般是没有设置 host 为 % 或者对应的ip地址这种情况下一般是通过修改原来 root 账户的 host 为 % 来进行远程登录，但是这种设置也是有一个缺点，就是某种情况下本地命令行就不能登录了。">
   
 
   <!-- feed -->
@@ -72,7 +70,7 @@
   
   
   <div class="cover-wrapper">
-    <cover class='cover post' style="display: none;">
+    <cover class='cover ' style="display: none;">
       <div class='cover-body'>
   <div class='a'>
     
@@ -424,12 +422,9 @@
 
 
 <div id="pjax-data" style="display: none">
-  <div id="pjax-ispage">true</div>
-  <div id="pjax-pageTitle">mysql root账户远程不能登录解决方法</div>
+  <div id="pjax-ispage">false</div>
+  <div id="pjax-pageTitle"></div>
   <div id="pjax-enable-cover">true</div>
-  
-  <div id="valine-path">none</div>
-  <div id="valine-placeholder">none</div>
   
   
 </div>
@@ -460,12 +455,25 @@
       
       
 
+
 <div class='l_main'>
   
-
-  
-    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+    
       
+  <section class="post-list ">
+    
+      
+        
+          
+        
+      
+    
+    
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
 
 
   <section class='meta'>
@@ -475,11 +483,11 @@
       <div class="meta" id="header-meta">
         
           
-  <h1 class="title">
-    <a href="/mysql-remote-can-not-login/">
-      mysql root账户远程不能登录解决方法
+  <h2 class="title">
+    <a href="/no-copyright-image-website/">
+      无版权图片网站大推荐[搬运]
     </a>
-  </h1>
+  </h2>
 
 
         
@@ -489,22 +497,11 @@
           
             
               
-<div class='new-meta-item author'>
-  <a href="/" rel="nofollow">
-    <img no-lazy src="https://i.loli.net/2020/07/02/JKNsSczEb68Rlvj.gif">
-    <p>chenwuai</p>
-  </a>
-</div>
-
-            
-          
-            
-              
   
   <div class='new-meta-item category'>
-    <a href='/categories/mysql/' rel="nofollow">
+    <a href='/categories/photo/' rel="nofollow">
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>mysql</p>
+      <p>photo</p>
     </a>
   </div>
 
@@ -515,7 +512,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2019-06-05 22:29</p>
+    <p>2020-09-23 19:50</p>
   </a>
 </div>
 
@@ -526,7 +523,7 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：502字</p>
+      <p>字数：479字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
@@ -553,200 +550,40 @@
   </section>
 
 
-      <section class="article typo">
-        <div class="article-entry" itemprop="articleBody">
-          
-          <h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>mysql 远程不能登录一般是没有设置 <em>host</em> 为 <em>%</em> 或者对应的ip地址<br>这种情况下一般是通过修改原来 <em>root</em> 账户的 <em>host</em> 为 <em>%</em> 来进行远程登录，但是这种设置也是有一个缺点，就是某种情况下本地命令行就不能登录了。</p>
-<a id="more"></a>
-
-<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>所以正确的做法是新创建一个 <em>root</em> 账户，但是 <em>host</em> 为 <em>%</em> 。具体操作为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GRANT ALL PRIVILEGES ON *.* TO &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;12306&#39; WITH GRANT OPTION; -- 12306 是密码</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
-<p>这时候在使用远程连接工具登录 <em>root</em> 账户就可以了。<br>总结一下，就是如果需要用户在本地和远程都可以连接，则需要创建两个账户，一个 <em>host</em> 为 <em>localhost</em>;另一个 <em>host</em> 为 <em>%</em>,当然这种方式并不安全，建议两个用户密码不一样</p>
-<h3 id="语句分析"><a href="#语句分析" class="headerlink" title="语句分析"></a>语句分析</h3><ul>
-<li><em>ALL PRIVILEGES</em><br>  表示将所有权限授予给用户。也可指定具体的权限，如：SELECT,CREATE,DROP等。<br>  GRANT SELECT,CREATE,UPDATE,ALTER,DROP ON….</li>
-<li><em>ON</em><br>  表示这些权限对哪些数据库和表生效，格式：数据库名.表名，这里写“*”表示所有数据库，所有表。如果我要指定将权限应用到test库的user表中，可以这么写：test.user</li>
-<li><em>TO</em><br>  将权限授予哪个用户。格式：”用户名”@”登录IP或域名或%”。%表示没有限制，在任何主机都可以登录。比如：”web_user”@”192.168.0.%”,表示web_user这个用户只能在192.168.0IP段登录</li>
-<li><em>IDENTIFIED BY</em><br>  指定用户的登录密码</li>
-<li><em>WITH GRANT OPTION</em><br>  表示允许用户将自己的权限授权给其它用户</li>
-<li><em>flush privileges</em><br>  更新权限信息<br>使用GRANT给用户添加权限，权限会自动叠加，不会覆盖之前授予的权限，比如你先给用户添加一个SELECT权限，后来又给用户添加了一个INSERT权限，那么该用户就同时拥有了SELECT和INSERT权限。</li>
-</ul>
-<p><a href="https://dev.mysql.com/doc/refman/5.7/en/privileges-provided.html" target="_blank" rel="noopener">详细的权限列表信息</a></p>
-
-          
-            <div class='article_footer'>
-              
-                
-  
-    
-    
-
-
-
-  
-
-  
-    
-    
-
-
-
-  
-
-  
-    
-    
-
-<section class="widget copyright  desktop mobile">
-  <div class='content'>
-    
-      <blockquote>
-        
-          
-            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
-
-          
-        
-      </blockquote>
-    
-  </div>
-</section>
-
-  
-
-
-              
-            </div>
-          
-        </div>
-        
-          
-
-
-  <section class='meta' id="footer-meta">
-    <div class='new-meta-box'>
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
       
-        
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-11T17:34:44+08:00">
-  <a class='notlink'>
-    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020-09-11 17:34</p>
-  </a>
-</div>
-
-        
-      
-        
-          
-  
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/mysql/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>mysql</p></a></div>
-
-
-        
-      
-        
-          
-
-        
-      
-        
-          
-  <div class="new-meta-item share -mob-share-list">
-  <div class="-mob-share-list share-body">
-    
-      
-        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
-          
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://chenchenwuai.github.io/mysql-remote-can-not-login/&title=mysql root账户远程不能登录解决方法 - chenwuai'blog&summary=原因mysql 远程不能登录一般是没有设置 host 为 % 或者对应的ip地址这种情况下一般是通过修改原来 root 账户的 host 为 % 来进行远程登录，但是这种设置也是有一个缺点，就是某种情况下本地命令行就不能登录了。"
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
-          
-          href="http://service.weibo.com/share/share.php?url=https://chenchenwuai.github.io/mysql-remote-can-not-login/&title=mysql root账户远程不能登录解决方法 - chenwuai'blog&summary=原因mysql 远程不能登录一般是没有设置 host 为 % 或者对应的ip地址这种情况下一般是通过修改原来 root 账户的 host 为 % 来进行远程登录，但是这种设置也是有一个缺点，就是某种情况下本地命令行就不能登录了。"
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
-          
-        </a>
-      
-    
-  </div>
-</div>
-
-
-
-        
+        <p>无论是写文章、做 PPT 还是找壁纸、换头像，搜图片都是件费时却最出效果的事情。之前小美给大家分享了最好用无版权图片网站之一的 Pixabay，不过图片素材这种东西，尤其是可自由修改使用的图片素材，向来是嫌少不嫌多的。所以这次，小美就把私藏的 60 余家无版权图片网站分享给大家，这家找不到合适的图片？没关系，下一家就有了！从此再也不会被找图这件事情所束缚。</p>
       
     </div>
+    
+      
+        <div class="button readmore">
+          <a href="/no-copyright-image-website/">
+            阅读全文 <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+      
+    
   </section>
+</article>
 
-
-        
-        
-          <div class="prev-next">
-            
-              <a class='prev' href='/enable-nginx-gzip-and-cache/'>
-                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>nginx开启gzip和缓存</p>
-                <p class='content'>极简配置在站点的配置文件中(例如website.conf)的server中添加gzip on.
-
-website.conf123server&#123;  gzip on;&#125;
-
-常规配...</p>
-              </a>
-            
-            
-              <a class='next' href='/enable-apache-https-and-forward-wss/'>
-                <p class='title'>CentOS 7 + Apache 配置https + wss转发<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-                <p class='content'>安装openssl库1.检查是否已安装 openssl
-1234openssl version -a# 打印出下面类似的信息表明已安装# OpenSSL 1.0.2k-fips  26 Jan ...</p>
-              </a>
-            
           </div>
         
-      </section>
-    </article>
+      
+    
+  </section>
   
-
-  
-    <!-- 显示推荐文章和评论 -->
-
-
-
-  <article class="post white-box reveal comments shadow">
-    <section class="article typo">
-      <p ct><i class='fas fa-comments'></i> 评论</p>
-      
-      
-      
-      
-      
-      
-        <section id="comments">
-          <div id="valine_container" class="valine_thread">
-            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
-          </div>
-        </section>
-      
-      
-    </section>
-  </article>
-
+    
+    <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+    
+    
 
   
 
 
-
-
-<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
-
-
+    
+  
 
 </div>
 <aside class='l_side'>
@@ -755,18 +592,139 @@ website.conf123server&#123;  gzip on;&#125;
     
     
 
+<section class="widget blogger shadow desktop mobile">
+  <div class='content'>
+    
+      
+        <div class='avatar'>
+          <img no-lazy src='https://i.loli.net/2020/07/02/JKNsSczEb68Rlvj.gif'/>
+        </div>
+      
+    
+    
+      <div class='text'>
+        
+        
+        
+          <p><span id="jinrishici-sentence">chenwuai'blog</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zccjxx62@gmail.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://github.com/chenchenwuai"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=110896778"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
 
-  <section class="widget toc-wrapper shadow desktop mobile">
+  
+
+  
+    
+    
+  
+
+  <section class="widget category shadow desktop">
     
   <header>
     
-      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+      <a href='/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
     
   </header>
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#原因"><span class="toc-text">原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决方法"><span class="toc-text">解决方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#语句分析"><span class="toc-text">语句分析</span></a></li></ol>
+      <ul class="entry navigation">
+        
+          <li><a class="flat-box"
+            title="/categories/TypeScript/" href="/categories/TypeScript/"
+            id="categoriesTypeScript"
+            ><div class='name'>TypeScript</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/apache/" href="/categories/apache/"
+            id="categoriesapache"
+            ><div class='name'>apache</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/javascript/" href="/categories/javascript/"
+            id="categoriesjavascript"
+            ><div class='name'>javascript</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/mysql/" href="/categories/mysql/"
+            id="categoriesmysql"
+            ><div class='name'>mysql</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/nginx/" href="/categories/nginx/"
+            id="categoriesnginx"
+            ><div class='name'>nginx</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/photo/" href="/categories/photo/"
+            id="categoriesphoto"
+            ><div class='name'>photo</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/test/" href="/categories/test/"
+            id="categoriestest"
+            ><div class='name'>test</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/vscode/" href="/categories/vscode/"
+            id="categoriesvscode"
+            ><div class='name'>vscode</div><div class='badge'>(1)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+  
+
+  
+    
+    
+  
+
+  <section class="widget tagcloud shadow desktop mobile">
+    
+  <header>
+    
+      <a href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <a href="/tags/TypeScript/" style="font-size: 14px; color: #999">TypeScript</a> <a href="/tags/Unsplash/" style="font-size: 14px; color: #999">Unsplash</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/centos7/" style="font-size: 14px; color: #999">centos7</a> <a href="/tags/copyright/" style="font-size: 14px; color: #999">copyright</a> <a href="/tags/gzip/" style="font-size: 14px; color: #999">gzip</a> <a href="/tags/https/" style="font-size: 14px; color: #999">https</a> <a href="/tags/javascript/" style="font-size: 14px; color: #999">javascript</a> <a href="/tags/mysql/" style="font-size: 24px; color: #555">mysql</a> <a href="/tags/nginx/" style="font-size: 14px; color: #999">nginx</a> <a href="/tags/test/" style="font-size: 14px; color: #999">test</a> <a href="/tags/vscode/" style="font-size: 14px; color: #999">vscode</a> <a href="/tags/wss/" style="font-size: 14px; color: #999">wss</a>
     </div>
   </section>
 

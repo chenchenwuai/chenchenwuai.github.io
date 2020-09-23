@@ -16,13 +16,16 @@
 
   <!-- 页面元数据 -->
   
-  <title>vscode 插件推荐 - chenwuai&#39;blog</title>
+  <title>TypeScript学习(1)-基础类型 - chenwuai&#39;blog</title>
   
-    <meta name="keywords" content="vscode">
+    <meta name="keywords" content="TypeScript">
   
 
   
-    <meta name="description" content="VSCode Plugin">
+    <meta name="description" content="
+学习资源为TypeScript中文网
+
+为了方便，无特殊说明，以下的js表示 JavaScript，ts表示TypeScript">
   
 
   <!-- feed -->
@@ -425,7 +428,7 @@
 
 <div id="pjax-data" style="display: none">
   <div id="pjax-ispage">true</div>
-  <div id="pjax-pageTitle">vscode 插件推荐</div>
+  <div id="pjax-pageTitle">TypeScript学习(1)-基础类型</div>
   <div id="pjax-enable-cover">true</div>
   
   <div id="valine-path">none</div>
@@ -476,8 +479,8 @@
         
           
   <h1 class="title">
-    <a href="/recommended-vscode-plugin/">
-      vscode 插件推荐
+    <a href="/typescript/typescript-learning-1/">
+      TypeScript学习(1)-基础类型
     </a>
   </h1>
 
@@ -502,9 +505,9 @@
               
   
   <div class='new-meta-item category'>
-    <a href='/categories/vscode/' rel="nofollow">
+    <a href='/categories/TypeScript/' rel="nofollow">
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>vscode</p>
+      <p>TypeScript</p>
     </a>
   </div>
 
@@ -515,7 +518,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2020-09-11 19:05</p>
+    <p>2020-07-10 08:36</p>
   </a>
 </div>
 
@@ -526,13 +529,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：16字</p>
+      <p>字数：1.8k字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：1分钟</p>
+      <p>时长：7分钟</p>
     </a>
   </div>
 
@@ -556,9 +559,62 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           
-          <p class='p center logo large'>VSCode Plugin</p>
+          <blockquote>
+<p>学习资源为<a href="https://www.tslang.cn/docs/home.html" target="_blank" rel="noopener">TypeScript中文网</a></p>
+</blockquote>
+<p>为了方便，无特殊说明，以下的<code>js</code>表示 JavaScript，<code>ts</code>表示TypeScript</p>
 <a id="more"></a>
-<h2 id="提效类插件"><a href="#提效类插件" class="headerlink" title="提效类插件"></a>提效类插件</h2><h3 id="Bracket-Pair-Colorizer-快速定位括号"><a href="#Bracket-Pair-Colorizer-快速定位括号" class="headerlink" title="Bracket Pair Colorizer (快速定位括号)"></a>Bracket Pair Colorizer (快速定位括号)</h3>
+<h3 id="基础类型"><a href="#基础类型" class="headerlink" title="基础类型"></a>基础类型</h3><p>基础类型包括 <code>boolean</code>,<code>number</code>,<code>string</code>,<code>数组</code>,<code>元组</code>,<code>enum</code>,<code>any</code>,<code>void</code>,<code>null</code>,<code>undefined</code>.<code>never</code>,<code>object</code>.<br>使用方法</p>
+<figure class="highlight typescript"><figcaption><span>typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 变量:数据类型</span></span><br><span class="line"><span class="keyword">let</span> a: <span class="built_in">number</span> = <span class="number">1</span> <span class="comment">// 数字</span></span><br><span class="line"><span class="keyword">let</span> b: <span class="built_in">string</span> = <span class="string">'string'</span> <span class="comment">// 字符串</span></span><br><span class="line"><span class="keyword">let</span> c: <span class="built_in">number</span>[] = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] <span class="comment">// 数组</span></span><br><span class="line"><span class="keyword">let</span> d: [<span class="built_in">number</span>,<span class="built_in">string</span>] = [<span class="number">1</span>,<span class="string">'hello world'</span>] <span class="comment">// 元组</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="布尔值-boolean"><a href="#布尔值-boolean" class="headerlink" title="布尔值 boolean"></a>布尔值 boolean</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> isTrue: <span class="built_in">boolean</span> = <span class="literal">true</span> <span class="comment">// 只能true、false两个值</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="数字-number"><a href="#数字-number" class="headerlink" title="数字 number"></a>数字 number</h4><p>ts始于js，所以ts中的所有数字都是浮点数，类型为<code>number</code>。除了支持十进制和十六进制字面量，ts还支持es6中引入的二进制和八进制字面量</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> decLiteral: <span class="built_in">number</span> = <span class="number">6</span>; <span class="comment">// 十进制</span></span><br><span class="line"><span class="keyword">let</span> hexLiteral: <span class="built_in">number</span> = <span class="number">0xf00d</span>; <span class="comment">// 十六进制 0x 数字0+小写字母x</span></span><br><span class="line"><span class="keyword">let</span> binaryLiteral: <span class="built_in">number</span> = <span class="number">0b1010</span>; <span class="comment">// 二进制 0b</span></span><br><span class="line"><span class="keyword">let</span> octalLiteral: <span class="built_in">number</span> = <span class="number">0o744</span>; <span class="comment">// 八进制 0o 字母o</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="字符串-string"><a href="#字符串-string" class="headerlink" title="字符串 string"></a>字符串 string</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> nickname: <span class="built_in">string</span> = <span class="string">'chenuai'</span></span><br><span class="line"><span class="keyword">let</span> age: <span class="built_in">number</span> = <span class="number">26</span></span><br><span class="line"><span class="keyword">let</span> hello: <span class="built_in">string</span> = <span class="string">'hello, my name is '</span> + nickname + <span class="string">', I am '</span> + age + <span class="string">'years old.'</span></span><br><span class="line"><span class="keyword">let</span> hello1: <span class="built_in">string</span> = <span class="string">`hello, my name is <span class="subst">$&#123;nickname&#125;</span>, I am <span class="subst">$&#123;age&#125;</span> years old.`</span> <span class="comment">// es6写法</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="数组"><a href="#数组" class="headerlink" title="数组 []"></a>数组 []</h4><p>ts表示数组有两种方式<br>1.元素类型后面加<code>[]</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> list: <span class="built_in">string</span>[] = [<span class="string">'chenuai'</span>,<span class="string">'hello world'</span>]</span><br><span class="line"><span class="keyword">let</span> list2: <span class="built_in">number</span>[] = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<p>2.使用数组泛型,之后讲解什么是泛型</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> list: <span class="built_in">Array</span>&lt;<span class="built_in">number</span>&gt; = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+
+<h4 id="元组-Tuple"><a href="#元组-Tuple" class="headerlink" title="元组(Tuple)"></a>元组(Tuple)</h4><p>元组类型允许表示一个已知元素数量和类型的数组，各元素的类型不必相同。 比如，你可以定义一对值分别为 <code>string</code>和<code>number</code>类型的元组</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> test: [<span class="built_in">number</span>,<span class="built_in">string</span>,<span class="built_in">boolean</span>] = [<span class="number">27</span>,<span class="string">'chenuai'</span>,<span class="literal">false</span>] </span><br><span class="line"><span class="keyword">let</span> userinfo: [<span class="built_in">string</span>,<span class="built_in">number</span>] = [<span class="string">'chenuai'</span>,<span class="number">27</span>] </span><br><span class="line"><span class="comment">// Error : userinfo[1] = ['chenwuai'] // 必须和定义的顺序一样</span></span><br><span class="line"><span class="comment">// 但是如果出现数组越界的情况，越界元素值必须是(string|number)类型</span></span><br><span class="line"><span class="comment">// 例如：</span></span><br><span class="line">userinfo[<span class="number">2</span>] = <span class="string">'第三个元素'</span> <span class="comment">// true</span></span><br><span class="line">userinfo[<span class="number">3</span>] = <span class="number">4</span> <span class="comment">// true</span></span><br><span class="line">userinfo[<span class="number">5</span>] = <span class="literal">true</span> <span class="comment">// error 此处错误，因为布尔值不是string或者number类型</span></span><br><span class="line"><span class="comment">// 此处牵扯联合类型，之后讲解。</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="枚举-enum"><a href="#枚举-enum" class="headerlink" title="枚举 enum"></a>枚举 enum</h4><p><code>enum</code>类型是对js标准数据类型的一个补充。 像C#等其它语言一样，使用枚举类型可以为一组数值赋予友好的名字</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> Color &#123;Red, Green, Blue&#125; <span class="comment">// 默认从0开始编号</span></span><br><span class="line"><span class="keyword">enum</span> videoStatus = &#123; connect = <span class="number">1</span>, play, pause, stop &#125; <span class="comment">// 默认从1开始编号</span></span><br><span class="line"><span class="keyword">enum</span> videoType = &#123; mp4, flv = <span class="number">2</span>, hls = <span class="number">4</span>, rtsp &#125; <span class="comment">// 默认从0开始，flv为2，hls为4， rtsp没有手动设置值，则它为上一个元素的值+1，所以为5</span></span><br></pre></td></tr></table></figure>
+<p>枚举类型提供的一个便利是你可以由枚举的值得到它的名字。<br>例如，我们知道颜色数值为2，但是不确定它映射到Color里的哪个名字，我们可以查找相应的名字：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> colorName: <span class="built_in">string</span> = Color[<span class="number">2</span>]</span><br><span class="line"><span class="built_in">console</span>.log(colorName) <span class="comment">// blue 因为在Color的枚举里面，blue对应的值为2</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Any"><a href="#Any" class="headerlink" title="Any"></a>Any</h4><p>有时候，我们会想要为那些在编程阶段还不清楚类型的变量指定一个类型。 这些值可能来自于动态的内容，比如来自用户输入或第三方代码库。 这种情况下，我们不希望类型检查器对这些值进行检查而是直接让它们通过编译阶段的检查。 那么我们可以使用<code>any</code>类型来标记这些变量</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 刚开始学ts时，如果不清楚使用什么类型，可以使用any，</span></span><br><span class="line"><span class="keyword">let</span> notSure: <span class="built_in">any</span> = <span class="number">4</span>;</span><br><span class="line">notSure = <span class="string">"maybe a string instead"</span>;</span><br><span class="line">notSure = <span class="literal">false</span>;</span><br></pre></td></tr></table></figure>
+<p>在对现有代码进行改写的时候，<code>any</code>类型是十分有用的，它允许你在编译时可选择地包含或移除类型检查。 你可能认为<code>Object</code>类型（见下方Object）有相似的作用，就像它在其它语言中那样。 但是<code>Object</code>类型的变量只是允许你给它赋任意值 - 但是却不能够在它上面调用任意的方法，即便它真的有这些方法：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> notSure: <span class="built_in">any</span> = <span class="number">4</span>;</span><br><span class="line">notSure.ifItExists(); <span class="comment">// okay, 在运行时，ifItExists方法可能存在</span></span><br><span class="line">notSure.toFixed(); <span class="comment">// okay, toFixed方法存在</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> prettySure: <span class="built_in">Object</span> = <span class="number">4</span>;</span><br><span class="line">prettySure.toFixed(); <span class="comment">// Error: Property 'toFixed' doesn't exist on type 'Object'. 属性toFixed 不存在</span></span><br></pre></td></tr></table></figure>
+<p>当你只知道一部分数据的类型时，<code>any</code>类型也是有用的。 比如，你有一个数组，它包含了不同的类型的数据：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> list: <span class="built_in">any</span>[] = [<span class="number">1</span>, <span class="literal">true</span>, <span class="string">"free"</span>];</span><br><span class="line">list[<span class="number">1</span>] = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Void"><a href="#Void" class="headerlink" title="Void"></a>Void</h4><p>某种程度上来说，<code>void</code>类型像是与<code>any</code>类型相反，它表示没有任何类型。 当一个函数没有返回值时，你通常会见到其返回值类型是 <code>void</code>：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">warnUser</span>(<span class="params"></span>): <span class="title">void</span> </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"This is my warning message"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 声明一个void类型的变量没有什么大用，因为你只能为它赋予undefined和null：</span></span><br><span class="line"><span class="keyword">let</span> unusable: <span class="built_in">void</span> = <span class="literal">undefined</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Null-和-Undefined"><a href="#Null-和-Undefined" class="headerlink" title="Null 和 Undefined"></a>Null 和 Undefined</h4><p>ts里，<code>undefined</code>和<code>null</code>两者各自有自己的类型分别叫做<code>undefined</code>和<code>null</code>。 和 <code>void</code>相似，它们的本身的类型用处不是很大：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> u: <span class="literal">undefined</span> = <span class="literal">undefined</span>;</span><br><span class="line"><span class="keyword">let</span> n: <span class="literal">null</span> = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+<p>默认情况下<code>null</code>和<code>undefined</code>是所有类型的子类型。 就是说你可以把 <code>null</code>和<code>undefined</code>赋值给<code>number</code>类型的变量。<br>然而，当你指定了<code>--strictNullChecks</code>标记，<code>null</code>和<code>undefined</code>只能赋值给<code>void</code>和它们各自。 这能避免 很多常见的问题。 也许在某处你想传入一个 <code>string</code>或<code>null</code>或<code>undefined</code>，你可以使用联合类型<code>string | null | undefined</code>。为了避免常见问题，尽可能的使用 <code>--strictNullChecks</code></p>
+<h4 id="Never"><a href="#Never" class="headerlink" title="Never"></a>Never</h4><p><code>never</code>类型表示的是那些永不存在的值的类型。 例如， <code>never</code>类型是那些总是会抛出异常或根本就不会有返回值的函数表达式或箭头函数表达式的返回值类型； 变量也可能是 <code>never</code>类型，当它们被永不为真的类型保护所约束时。</p>
+<p>never类型是任何类型的子类型，也可以赋值给任何类型；然而，没有类型是<code>never</code>的子类型或可以赋值给<code>never</code>类型（除了<code>never</code>本身之外）。 即使 <code>any</code>也不可以赋值给<code>never</code>。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 返回never的函数必须存在无法达到的终点</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">error</span>(<span class="params">message: <span class="built_in">string</span></span>): <span class="title">never</span> </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(message);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 推断的返回值类型为never</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fail</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> error(<span class="string">"Something failed"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回never的函数必须存在无法达到的终点</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">infiniteLoop</span>(<span class="params"></span>): <span class="title">never</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h4><p><code>object</code>表示非原始类型，也就是除<code>number</code>，<code>string</code>，<code>boolean</code>，<code>symbol</code>，<code>null</code>或<code>undefined</code>之外的类型。<br>使用<code>object</code>类型，就可以更好的表示像Object.create这样的API。例如：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> <span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params">o: object | <span class="literal">null</span></span>): <span class="title">void</span></span>;</span><br><span class="line"></span><br><span class="line">create(&#123; prop: <span class="number">0</span> &#125;); <span class="comment">// OK</span></span><br><span class="line">create(<span class="literal">null</span>); <span class="comment">// OK</span></span><br><span class="line"></span><br><span class="line">create(<span class="number">42</span>); <span class="comment">// Error</span></span><br><span class="line">create(<span class="string">"string"</span>); <span class="comment">// Error</span></span><br><span class="line">create(<span class="literal">false</span>); <span class="comment">// Error</span></span><br><span class="line">create(<span class="literal">undefined</span>); <span class="comment">// Error</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h3><p>有时候你会遇到这样的情况，你会比ts更了解某个值的详细信息。 通常这会发生在你清楚地知道一个实体具有比它现有类型更确切的类型。</p>
+<p>通过类型断言这种方式可以告诉编译器，“相信我，我知道自己在干什么”。 类型断言好比其它语言里的类型转换，但是不进行特殊的数据检查和解构。 它没有运行时的影响，只是在编译阶段起作用。 ts会假设你，程序员，已经进行了必须的检查。</p>
+<p>类型断言有两种形式。 其一是“尖括号”语法：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> someValue: <span class="built_in">any</span> = <span class="string">"this is a string"</span>;</span><br><span class="line"><span class="keyword">let</span> strLength: <span class="built_in">number</span> = (&lt;<span class="built_in">string</span>&gt;someValue).length;</span><br></pre></td></tr></table></figure>
+<p>另一个为<code>as</code>语法：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> someValue: <span class="built_in">any</span> = <span class="string">"this is a string"</span>;</span><br><span class="line"><span class="keyword">let</span> strLength: <span class="built_in">number</span> = (someValue <span class="keyword">as</span> <span class="built_in">string</span>).length;</span><br></pre></td></tr></table></figure>
+<p>两种形式是等价的。 至于使用哪个大多数情况下是凭个人喜好；然而，当你在ts里使用<code>JSX</code>时，只有 <code>as</code>语法断言是被允许的。</p>
+
           
             <div class='article_footer'>
               
@@ -613,10 +669,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-11T18:26:52+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-23T16:53:37+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020-09-11 18:26</p>
+    <p>更新于：2020-09-23 16:53</p>
   </a>
 </div>
 
@@ -625,7 +681,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/vscode/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>vscode</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/TypeScript/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>TypeScript</p></a></div>
 
 
         
@@ -643,15 +699,19 @@
         
           <div class="prev-next">
             
-              <a class='prev' href='/no-copyright-image-website/'>
-                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>无版权图片网站大推荐[搬运]</p>
-                <p class='content'>无论是写文章、做 PPT 还是找壁纸、换头像，搜图片都是件费时却最出效果的事情。之前小美给大家分享了最好用无版权图片网站之一的 Pixabay，不过图片素材这种东西，尤其是可自由修改使用的图片素...</p>
+              <a class='prev' href='/hello-world/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Hello World</p>
+                <p class='content'>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any ...</p>
               </a>
             
             
-              <a class='next' href='/hello-world/'>
-                <p class='title'>Hello World<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-                <p class='content'>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any ...</p>
+              <a class='next' href='/enable-nginx-gzip-and-cache/'>
+                <p class='title'>nginx开启gzip和缓存<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>极简配置在站点的配置文件中(例如website.conf)的server中添加gzip on.
+
+website.conf123server&#123;  gzip on;&#125;
+
+常规配...</p>
               </a>
             
           </div>
@@ -712,7 +772,7 @@
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#提效类插件"><span class="toc-text">提效类插件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Bracket-Pair-Colorizer-快速定位括号"><span class="toc-text">Bracket Pair Colorizer (快速定位括号)</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础类型"><span class="toc-text">基础类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#布尔值-boolean"><span class="toc-text">布尔值 boolean</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数字-number"><span class="toc-text">数字 number</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字符串-string"><span class="toc-text">字符串 string</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数组"><span class="toc-text">数组 []</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#元组-Tuple"><span class="toc-text">元组(Tuple)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#枚举-enum"><span class="toc-text">枚举 enum</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Any"><span class="toc-text">Any</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Void"><span class="toc-text">Void</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Null-和-Undefined"><span class="toc-text">Null 和 Undefined</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Never"><span class="toc-text">Never</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Object"><span class="toc-text">Object</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类型断言"><span class="toc-text">类型断言</span></a></li></ol>
     </div>
   </section>
 
