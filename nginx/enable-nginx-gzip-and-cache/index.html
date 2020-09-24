@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta name="renderer" content="webkit">
@@ -18,9 +16,13 @@
 
   <!-- 页面元数据 -->
   
-  <title>分类：TypeScript - chenwuai&#39;blog</title>
+  <title>nginx开启gzip和缓存 - chenwuai&#39;blog</title>
+  
+    <meta name="keywords" content="nginx,gzip">
   
 
+  
+    <meta name="description" content="极简配置在站点的配置文件中(例如website.conf)的server中添加gzip on.">
   
 
   <!-- feed -->
@@ -70,7 +72,7 @@
   
   
   <div class="cover-wrapper">
-    <cover class='cover ' style="display: none;">
+    <cover class='cover post' style="display: none;">
       <div class='cover-body'>
   <div class='a'>
     
@@ -486,9 +488,12 @@
 
 
 <div id="pjax-data" style="display: none">
-  <div id="pjax-ispage">false</div>
-  <div id="pjax-pageTitle"></div>
+  <div id="pjax-ispage">true</div>
+  <div id="pjax-pageTitle">nginx开启gzip和缓存</div>
   <div id="pjax-enable-cover">true</div>
+  
+  <div id="valine-path">none</div>
+  <div id="valine-placeholder">none</div>
   
   
 </div>
@@ -519,25 +524,12 @@
       
       
 
-
 <div class='l_main'>
   
-    
-      
-  <section class="post-list ">
-    
-      
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
+
   
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+      
 
 
   <section class='meta'>
@@ -547,11 +539,11 @@
       <div class="meta" id="header-meta">
         
           
-  <h2 class="title">
-    <a href="/typescript/typescript-learning-1/">
-      TypeScript学习(1)-基础类型
+  <h1 class="title">
+    <a href="/nginx/enable-nginx-gzip-and-cache/">
+      nginx开启gzip和缓存
     </a>
-  </h2>
+  </h1>
 
 
         
@@ -561,11 +553,22 @@
           
             
               
+<div class='new-meta-item author'>
+  <a href="/" rel="nofollow">
+    <img no-lazy src="https://i.loli.net/2020/07/02/JKNsSczEb68Rlvj.gif">
+    <p>chenwuai</p>
+  </a>
+</div>
+
+            
+          
+            
+              
   
   <div class='new-meta-item category'>
-    <a href='/categories/TypeScript/' rel="nofollow">
+    <a href='/categories/nginx/' rel="nofollow">
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>TypeScript</p>
+      <p>nginx</p>
     </a>
   </div>
 
@@ -576,7 +579,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2020-07-10 08:36</p>
+    <p>2020-06-16 19:15</p>
   </a>
 </div>
 
@@ -587,13 +590,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：1.8k字</p>
+      <p>字数：1.1k字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：7分钟</p>
+      <p>时长：4分钟</p>
     </a>
   </div>
 
@@ -614,43 +617,176 @@
   </section>
 
 
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>学习资源为<a href="https://www.tslang.cn/docs/home.html" target="_blank" rel="noopener">TypeScript中文网</a></p>
-</blockquote>
-<p>为了方便，无特殊说明，以下的<code>js</code>表示 JavaScript，<code>ts</code>表示TypeScript</p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/typescript/typescript-learning-1/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          <h3 id="极简配置"><a href="#极简配置" class="headerlink" title="极简配置"></a>极简配置</h3><p>在站点的配置文件中(例如<code>website.conf</code>)的server中添加<code>gzip on</code>.</p>
+<a id="more"></a>
+<figure class="highlight nginx"><figcaption><span>website.conf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">  <span class="attribute">gzip</span> <span class="literal">on</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-          </div>
+<h3 id="常规配置"><a href="#常规配置" class="headerlink" title="常规配置"></a>常规配置</h3><p>按照下面代码进行配置</p>
+<figure class="highlight nginx"><figcaption><span>website.conf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">  <span class="attribute">gzip</span> <span class="literal">on</span>; <span class="comment"># 是否开启gzip</span></span><br><span class="line">  <span class="attribute">gzip_buffers</span> <span class="number">32</span> <span class="number">4K</span>; <span class="comment"># 缓冲(压缩在内存中缓冲几块? 每块多大?)</span></span><br><span class="line">  <span class="attribute">gzip_comp_level</span> <span class="number">6</span>; <span class="comment"># 推荐6 压缩级别(级别越高,压的越小,越浪费CPU计算资源)</span></span><br><span class="line">  <span class="attribute">gzip_min_length</span> <span class="number">1k</span>; <span class="comment"># 开始压缩的最小长度(再小就不要压缩了,意义不在)</span></span><br><span class="line">  <span class="attribute">gzip_types</span> application/javascript text/css text/xml; <span class="comment"># 对哪些类型的文件用压缩 如txt,xml,html ,css</span></span><br><span class="line">  <span class="attribute">gzip_disable</span> <span class="string">"MSIE [1-6]\."</span>; <span class="comment">#正则匹配UA，配置禁用gzip条件。此处表示ie6及以下不启用gzip（因为ie低版本不支持）</span></span><br><span class="line">  <span class="attribute">gzip_http_version</span> <span class="number">1</span>.<span class="number">1</span>; <span class="comment"># 开始压缩的http协议版本(可以不设置,目前几乎全是1.1协议)</span></span><br><span class="line">  <span class="attribute">gzip_vary</span> <span class="literal">on</span>; <span class="comment"># 是否传输gzip压缩标志</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>保存并重启nginx，刷新页面（为了避免缓存，请强制刷新）就能看到效果了。以谷歌浏览器为例，通过F12看请求的响应头部。</p>
+<h3 id="gzip参数详解"><a href="#gzip参数详解" class="headerlink" title="gzip参数详解"></a>gzip参数详解</h3><h4 id="gzip"><a href="#gzip" class="headerlink" title="gzip"></a>gzip</h4><figure class="highlight nginx"><figcaption><span>website.conf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#打开或关闭gzip</span></span><br><span class="line"><span class="attribute">gzip</span> <span class="literal">on</span>; <span class="comment"># on | off</span></span><br></pre></td></tr></table></figure>
+
+<p>解释：打开或关闭gzip</p>
+<h4 id="gzip-buffers"><a href="#gzip-buffers" class="headerlink" title="gzip_buffers"></a>gzip_buffers</h4><figure class="highlight nginx"><figcaption><span>website.conf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置用于处理请求压缩的缓冲区数量和大小</span></span><br><span class="line"><span class="comment"># 比如32 4K表示按照内存页（one memory page）大小以4K为单位（即一个系统中内存页为4K），申请32倍的内存空间。建议此项不设置，使用默认值</span></span><br><span class="line"><span class="attribute">gzip_buffers</span> <span class="number">32</span> <span class="number">4k</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="gzip-comp-level"><a href="#gzip-comp-level" class="headerlink" title="gzip_comp_level"></a>gzip_comp_level</h4><figure class="highlight nginx"><figcaption><span>website.conf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置gzip压缩级别，取值 1-9</span></span><br><span class="line"><span class="comment"># 值越高越消耗cpu的性能，高并发情况下cpu可能达到100%</span></span><br><span class="line"><span class="comment"># 级别越底压缩速度越快文件压缩比越小，反之速度越慢文件压缩比越大，一般6之后压缩比很难提升</span></span><br><span class="line"><span class="comment"># 一方面，gzip_comp_level 1的压缩能力已经够用。另一方面，压缩一定要和静态资源缓存相结合，缓存压缩后的版本，否则每次都压缩高负载下服务器肯定吃不住。</span></span><br><span class="line"><span class="attribute">gzip_comp_level</span> <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="gzip-disable"><a href="#gzip-disable" class="headerlink" title="gzip_disable"></a>gzip_disable</h4><figure class="highlight nginx"><figcaption><span>website.conf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 表明哪些UA(usergent)头不使用gzip压缩，可以正则</span></span><br><span class="line"><span class="attribute">gzip_disable</span> <span class="string">"MSIE [1-6]\."</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="gzip-min-length"><a href="#gzip-min-length" class="headerlink" title="gzip_min_length"></a>gzip_min_length</h4><figure class="highlight nginx"><figcaption><span>website.conf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 当返回内容大于此值时才会使用gzip进行压缩,以k为单位,当值为0时，所有页面都进行压缩。</span></span><br><span class="line"><span class="attribute">gzip_min_length</span> <span class="number">1k</span>; <span class="comment"># 100 | 500 | 1k</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="gzip-http-version"><a href="#gzip-http-version" class="headerlink" title="gzip_http_version"></a>gzip_http_version</h4><figure class="highlight nginx"><figcaption><span>website.conf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用于识别http协议的版本，早期的浏览器不支持gzip压缩，用户会看到乱码，所以为了支持前期版本加了此选项。默认在http/1.0的协议下不开启gzip压缩。</span></span><br><span class="line"><span class="attribute">gzip_http_version</span> <span class="number">1</span>.<span class="number">1</span>; <span class="comment"># 1.0 | 1.1</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="gzip-proxied"><a href="#gzip-proxied" class="headerlink" title="gzip_proxied"></a>gzip_proxied</h4><figure class="highlight nginx"><figcaption><span>website.conf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Nginx做为反向代理的时候启用:</span></span><br><span class="line"><span class="comment">#   off – 关闭所有的代理结果数据压缩，默认值</span></span><br><span class="line"><span class="comment">#   expired – 如果header中包含”Expires”头信息，启用压缩</span></span><br><span class="line"><span class="comment">#   no-cache – 如果header中包含”Cache-Control:no-cache”头信息，启用压缩</span></span><br><span class="line"><span class="comment">#   no-store – 如果header中包含”Cache-Control:no-store”头信息，启用压缩</span></span><br><span class="line"><span class="comment">#   private – 如果header中包含”Cache-Control:private”头信息，启用压缩</span></span><br><span class="line"><span class="comment">#   no_last_modified – 启用压缩，如果header中包含”Last_Modified”头信息，启用压缩</span></span><br><span class="line"><span class="comment">#   no_etag – 启用压缩，如果header中包含“ETag”头信息，启用压缩</span></span><br><span class="line"><span class="comment">#   auth – 启用压缩，如果header中包含“Authorization”头信息，启用压缩</span></span><br><span class="line"><span class="comment">#   any – 无条件压缩所有结果数据</span></span><br><span class="line"><span class="attribute">gzip_proxied</span>  <span class="literal">off</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="gzip-vary"><a href="#gzip-vary" class="headerlink" title="gzip_vary"></a>gzip_vary</h4><figure class="highlight nginx"><figcaption><span>website.conf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 浏览器请求增加响应头"Vary: Accept-Encoding"</span></span><br><span class="line"><span class="attribute">gzip_vary</span> <span class="literal">on</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="gzip-types"><a href="#gzip-types" class="headerlink" title="gzip_types"></a>gzip_types</h4><figure class="highlight nginx"><figcaption><span>website.conf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置需要压缩的MIME类型,如果不在设置类型范围内的请求不进行压缩，其中的值可以在 mime.types 文件中找到</span></span><br><span class="line"><span class="comment"># 压缩字体类型 font/ttf font/otf image/svg+xml</span></span><br><span class="line"><span class="attribute">gzip_types</span>  text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png font/ttf font/otf image/svg+xml;</span><br></pre></td></tr></table></figure>
+<p>这里需要说明一些特殊的类型，使用”字体类型”的资源，而这些资源类型往往会被忽略，且这些资源又比较大，没有被压缩很不合算。（可以参考：<a href="http://www.darrenfang.com/2015/01/setting-up-http-cache-and-gzip-with-nginx/）" target="_blank" rel="noopener">http://www.darrenfang.com/2015/01/setting-up-http-cache-and-gzip-with-nginx/）</a></p>
+<h3 id="开启缓存"><a href="#开启缓存" class="headerlink" title="开启缓存"></a>开启缓存</h3><figure class="highlight nginx"><figcaption><span>website.conf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 缓存图片</span></span><br><span class="line"><span class="attribute">location</span> <span class="regexp">~* ^.+\.(ico|gif|jpg|jpeg|png)$</span> &#123; </span><br><span class="line">  <span class="attribute">access_log</span>   <span class="literal">off</span>; </span><br><span class="line">  <span class="attribute">expires</span>      <span class="number">30d</span>; <span class="comment">#根据自己需要修改时间</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#缓存js、css、视频文件</span></span><br><span class="line"><span class="attribute">location</span> <span class="regexp">~* ^.+\.(css|js|txt|xml|swf|wav)$</span> &#123;</span><br><span class="line">  <span class="attribute">access_log</span>   <span class="literal">off</span>;</span><br><span class="line">  <span class="attribute">expires</span>      <span class="number">24h</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 缓存html类型文件</span></span><br><span class="line"><span class="attribute">location</span> <span class="regexp">~* ^.+\.(html|htm)$</span> &#123;</span><br><span class="line">  <span class="attribute">expires</span>      <span class="number">1h</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 缓存字体文件，配合gzip更好</span></span><br><span class="line"><span class="attribute">location</span> <span class="regexp">~* ^.+\.(eot|ttf|otf|woff|svg)$</span> &#123;</span><br><span class="line">  <span class="attribute">access_log</span>   <span class="literal">off</span>;</span><br><span class="line">  <span class="attribute">expires</span> <span class="number">30d</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+          
+            <div class='article_footer'>
+              
+                
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
+  <div class='content'>
+    
+      <blockquote>
+        
+          
+            <p>本文链接：<a href=https://chenchenwuai.github.io/nginx/enable-nginx-gzip-and-cache/>https://chenchenwuai.github.io/nginx/enable-nginx-gzip-and-cache/</a></p>
+          
+        
+      </blockquote>
+    
+  </div>
+</section>
+
+  
+
+
+              
+            </div>
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-24T14:22:52+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2020-09-24 14:22</p>
+  </a>
+</div>
+
         
       
-    
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/nginx/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>nginx</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/gzip/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>gzip</p></a></div>
+
+
+        
+      
+        
+          
+
+        
+      
+    </div>
   </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+              <a class='prev' href='/typescript/typescript-learning-1/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>TypeScript学习(1)-基础类型</p>
+                <p class='content'>
+搬运TypeScript中文网 - 基础类型为了方便，无特殊说明，以下的js表示 JavaScript，ts表示TypeScript
+
+
+基础类型基础类型包括 boolean,number,s...</p>
+              </a>
+            
+            
+              <a class='next' href='/database/mysql-remote-can-not-login/'>
+                <p class='title'>mysql root账户远程不能登录解决方法<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>原因mysql 远程不能登录一般是没有设置 host 为 % 或者对应的ip地址这种情况下一般是通过修改原来 root 账户的 host 为 % 来进行远程登录，但是这种设置也是有一个缺点，就是...</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
   
-    
-    <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-    
-    
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
+      
+      
+      
+      
+      
+      
+        <section id="comments">
+          <div id="valine_container" class="valine_thread">
+            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
 
   
 
 
-    
-  
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
 
 </div>
 <aside class='l_side'>
@@ -659,139 +795,18 @@
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <div class='avatar'>
-          <img no-lazy src='https://i.loli.net/2020/07/02/JKNsSczEb68Rlvj.gif'/>
-        </div>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">chenwuai'blog</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="mailto:zccjxx62@gmail.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-          
-            <a href="https://github.com/chenchenwuai"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-          
-            <a href="https://music.163.com/#/user/home?id=110896778"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
-
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
+  <section class="widget toc-wrapper shadow desktop mobile">
     
   <header>
     
-      <a href='/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/TypeScript/" href="/categories/TypeScript/"
-            id="categoriesTypeScript"
-            ><div class='name'>TypeScript</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/apache/" href="/categories/apache/"
-            id="categoriesapache"
-            ><div class='name'>apache</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/javascript/" href="/categories/javascript/"
-            id="categoriesjavascript"
-            ><div class='name'>javascript</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/mysql/" href="/categories/mysql/"
-            id="categoriesmysql"
-            ><div class='name'>mysql</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/nginx/" href="/categories/nginx/"
-            id="categoriesnginx"
-            ><div class='name'>nginx</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/photo/" href="/categories/photo/"
-            id="categoriesphoto"
-            ><div class='name'>photo</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/test/" href="/categories/test/"
-            id="categoriestest"
-            ><div class='name'>test</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/vscode/" href="/categories/vscode/"
-            id="categoriesvscode"
-            ><div class='name'>vscode</div><div class='badge'>(1)</div></a></li>
-        
-      </ul>
-    </div>
-  </section>
-
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/TypeScript/" style="font-size: 14px; color: #999">TypeScript</a> <a href="/tags/Unsplash/" style="font-size: 14px; color: #999">Unsplash</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/centos7/" style="font-size: 14px; color: #999">centos7</a> <a href="/tags/copyright/" style="font-size: 14px; color: #999">copyright</a> <a href="/tags/gzip/" style="font-size: 14px; color: #999">gzip</a> <a href="/tags/https/" style="font-size: 14px; color: #999">https</a> <a href="/tags/javascript/" style="font-size: 14px; color: #999">javascript</a> <a href="/tags/mysql/" style="font-size: 24px; color: #555">mysql</a> <a href="/tags/nginx/" style="font-size: 14px; color: #999">nginx</a> <a href="/tags/test/" style="font-size: 14px; color: #999">test</a> <a href="/tags/vscode/" style="font-size: 14px; color: #999">vscode</a> <a href="/tags/wss/" style="font-size: 14px; color: #999">wss</a>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#极简配置"><span class="toc-text">极简配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常规配置"><span class="toc-text">常规配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gzip参数详解"><span class="toc-text">gzip参数详解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#gzip"><span class="toc-text">gzip</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gzip-buffers"><span class="toc-text">gzip_buffers</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gzip-comp-level"><span class="toc-text">gzip_comp_level</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gzip-disable"><span class="toc-text">gzip_disable</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gzip-min-length"><span class="toc-text">gzip_min_length</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gzip-http-version"><span class="toc-text">gzip_http_version</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gzip-proxied"><span class="toc-text">gzip_proxied</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gzip-vary"><span class="toc-text">gzip_vary</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gzip-types"><span class="toc-text">gzip_types</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开启缓存"><span class="toc-text">开启缓存</span></a></li></ol>
     </div>
   </section>
 
