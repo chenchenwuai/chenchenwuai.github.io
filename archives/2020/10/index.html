@@ -18,7 +18,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>分类：nginx - chenwuai&#39;blog</title>
+  <title>归档：2020/10 - chenwuai&#39;blog</title>
   
 
   
@@ -477,7 +477,7 @@
   </div>
   
 
-  <div class="l_body nocover">
+  <div class="l_body">
     <div class='body-wrapper' id="pjax-container">
       
         <!--此文件用来存放一些不方便取值的变量-->
@@ -496,16 +496,16 @@
 
 <script>
   // 处理封面 此时 jquery 还没加载
-  if ("none" == "none") { // 移除封面
+  if ("blog" == "none") { // 移除封面
     document.getElementsByClassName('cover')[0].style.display = "none";
     document.getElementsByClassName('l_body')[0].classList.add("nocover");
     document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.add("show");
   } else {
-    if ("none" == "blog") { // 半屏
+    if ("blog" == "blog") { // 半屏
       document.getElementsByClassName('cover')[0].classList.remove("full");
       document.getElementsByClassName('cover')[0].classList.add("half");
       document.getElementsByClassName('scroll-down')[0].style.display = "none";
-    } else if ("none" == "docs") { // 全屏
+    } else if ("blog" == "docs") { // 全屏
       document.getElementsByClassName('cover')[0].classList.remove("half");
       document.getElementsByClassName('cover')[0].classList.add("full");
       document.getElementsByClassName('scroll-down')[0].style.display = "";
@@ -519,11 +519,9 @@
       
       
 
-
 <div class='l_main'>
-  
-    
-      
+	
+		
   <section class="post-list ">
     
       
@@ -548,8 +546,8 @@
         
           
   <h2 class="title">
-    <a href="/nginx/enable-nginx-gzip-and-cache/">
-      nginx开启gzip和缓存
+    <a href="/php/Can't%20connect%20to%20local%20MySQL/">
+      解决 Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2）的方法
     </a>
   </h2>
 
@@ -563,9 +561,9 @@
               
   
   <div class='new-meta-item category'>
-    <a href='/categories/nginx/' rel="nofollow">
+    <a href='/categories/php/' rel="nofollow">
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>nginx</p>
+      <p>php</p>
     </a>
   </div>
 
@@ -576,7 +574,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2020-06-16 19:15</p>
+    <p>2020-10-10 10:17</p>
   </a>
 </div>
 
@@ -587,13 +585,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：1.1k字</p>
+      <p>字数：709字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：4分钟</p>
+      <p>时长：2分钟</p>
     </a>
   </div>
 
@@ -617,13 +615,13 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="极简配置"><a href="#极简配置" class="headerlink" title="极简配置"></a>极简配置</h3><p>在站点的配置文件中(例如<code>website.conf</code>)的server中添加<code>gzip on</code>.</p>
+        <p>PHP连接MySQL报错：SQLSTATE[HY000] [2002] Can’t connect to local MySQL server through socket ‘MySQL’ (2)</p>
       
     </div>
     
       
         <div class="button readmore">
-          <a href="/nginx/enable-nginx-gzip-and-cache/">
+          <a href="/php/Can't%20connect%20to%20local%20MySQL/">
             阅读全文 <i class="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -646,9 +644,7 @@
   
 
 
-    
-  
-
+	
 </div>
 <aside class='l_side'>
   
@@ -793,6 +789,14 @@
 
 </aside>
 
+
+
+
+
+	<!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+	
+
+	
 
 
     </div>

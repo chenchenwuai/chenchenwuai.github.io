@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta name="renderer" content="webkit">
@@ -18,9 +16,13 @@
 
   <!-- 页面元数据 -->
   
-  <title>分类：nginx - chenwuai&#39;blog</title>
+  <title>解决 Can&#39;t connect to local MySQL server through socket &#39;/var/lib/mysql/mysql.sock&#39; (2）的方法 - chenwuai&#39;blog</title>
+  
+    <meta name="keywords" content="php,mysql,mysql.sock">
   
 
+  
+    <meta name="description" content="PHP连接MySQL报错：SQLSTATE[HY000] [2002] Can’t connect to local MySQL server through socket ‘MySQL’ (2)">
   
 
   <!-- feed -->
@@ -70,7 +72,7 @@
   
   
   <div class="cover-wrapper">
-    <cover class='cover ' style="display: none;">
+    <cover class='cover post' style="display: none;">
       <div class='cover-body'>
   <div class='a'>
     
@@ -486,9 +488,12 @@
 
 
 <div id="pjax-data" style="display: none">
-  <div id="pjax-ispage">false</div>
-  <div id="pjax-pageTitle"></div>
+  <div id="pjax-ispage">true</div>
+  <div id="pjax-pageTitle">解决 Can&#39;t connect to local MySQL server through socket &#39;/var/lib/mysql/mysql.sock&#39; (2）的方法</div>
   <div id="pjax-enable-cover">true</div>
+  
+  <div id="valine-path">none</div>
+  <div id="valine-placeholder">none</div>
   
   
 </div>
@@ -519,25 +524,12 @@
       
       
 
-
 <div class='l_main'>
   
-    
-      
-  <section class="post-list ">
-    
-      
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
+
   
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+      
 
 
   <section class='meta'>
@@ -547,11 +539,11 @@
       <div class="meta" id="header-meta">
         
           
-  <h2 class="title">
-    <a href="/nginx/enable-nginx-gzip-and-cache/">
-      nginx开启gzip和缓存
+  <h1 class="title">
+    <a href="/php/Can't%20connect%20to%20local%20MySQL/">
+      解决 Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2）的方法
     </a>
-  </h2>
+  </h1>
 
 
         
@@ -561,11 +553,22 @@
           
             
               
+<div class='new-meta-item author'>
+  <a href="/" rel="nofollow">
+    <img no-lazy src="https://i.loli.net/2020/07/02/JKNsSczEb68Rlvj.gif">
+    <p>chenwuai</p>
+  </a>
+</div>
+
+            
+          
+            
+              
   
   <div class='new-meta-item category'>
-    <a href='/categories/nginx/' rel="nofollow">
+    <a href='/categories/php/' rel="nofollow">
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>nginx</p>
+      <p>php</p>
     </a>
   </div>
 
@@ -576,7 +579,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2020-06-16 19:15</p>
+    <p>2020-10-10 10:17</p>
   </a>
 </div>
 
@@ -587,13 +590,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：1.1k字</p>
+      <p>字数：709字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：4分钟</p>
+      <p>时长：2分钟</p>
     </a>
   </div>
 
@@ -614,40 +617,172 @@
   </section>
 
 
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="极简配置"><a href="#极简配置" class="headerlink" title="极简配置"></a>极简配置</h3><p>在站点的配置文件中(例如<code>website.conf</code>)的server中添加<code>gzip on</code>.</p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/nginx/enable-nginx-gzip-and-cache/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          <p>PHP连接MySQL报错：SQLSTATE[HY000] [2002] Can’t connect to local MySQL server through socket ‘MySQL’ (2)</p>
+<a id="more"></a>
 
-          </div>
+<h2 id="一-问题发现"><a href="#一-问题发现" class="headerlink" title="一.问题发现"></a>一.问题发现</h2><p>今天在服务器上同时安装了mysql和mariadb，经过一番操作之后，发现原来的php程序不能连接mysql了，每次连接就会提示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQLSTATE[HY000] [2002] Can&#39;t connect to local MySQL server through socket &#39;MySQL&#39; (2)</span><br></pre></td></tr></table></figure>
+<p>在网上找了很多解决方法（csdn越来越垃圾了，都是千篇一律的复制粘贴，没有真正解决问题的），么有找到方法，在google找了几个解决方法，经过测试可以使用，并明白了原理。</p>
+<h2 id="二-问题解析"><a href="#二-问题解析" class="headerlink" title="二.问题解析"></a>二.问题解析</h2><p>如果提示这个错误，如果将连接参数中的localhost换成 <code>127.0.0.1</code>就能正常使用，这是为什么呢？<br>这是因为使用localhost是通过套接字(socket)通讯，而<code>127.0.0.1</code>是通过tcp/ip协议通讯，而mysql的报错就是没有找到这个套接字文件(mysql.sock)，<br>一般出现这种情况是因为（个人总结，可能还有其他原因，欢迎补充）</p>
+<ul>
+<li>有些安装mysql的方法没有将此文件放在了其他位置,php连接mysql时没有找到这个文件</li>
+<li>php没有访问这个文件的权限</li>
+<li>这个文件被删除了</li>
+</ul>
+<h2 id="三-问题解决"><a href="#三-问题解决" class="headerlink" title="三.问题解决"></a>三.问题解决</h2><p>找到问题了，现在就要解决问题<br>首先既然php找不到这个文件，那我们先全局找一下这个文件在哪儿</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo find / -name mysql.sock</span><br></pre></td></tr></table></figure>
+<p>如果没找到这个文件，尝试搜索一下 mysqld.sock</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo find / -name mysqld.sock</span><br></pre></td></tr></table></figure>
+<p>找到以上两个文件的任一文件，首先记一下文件的绝对路径， 我这边找到的是 <code>/usr/local/mysql/data/mysqld.sock</code></p>
+<blockquote>
+<p>如果没有找到，需要自己从其他地方复制一份，这个需要自己去搜索解决方法</p>
+</blockquote>
+<p>我找到了两种解决方法</p>
+<h3 id="1-修改php-ini"><a href="#1-修改php-ini" class="headerlink" title="1.修改php.ini"></a>1.修改php.ini</h3><p>打开php的配置文件, 一般是<code>/etc/php.ini</code>，<br>然后找到<code>[MYSQL]</code>段落，下面有一个<code>mysql.default_socket</code>，将上面记录的socket文件的绝对路径填写到 等号后面。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">mysql.default_socket</span>= /usr/local/mysql/data/mysqld.sock</span><br></pre></td></tr></table></figure>
+<p>然后再找到<code>[Pdo_mysql]</code>段落，下面有一个<code>pdo_mysql.default_socket</code>，将上面记录的socket文件的绝对路径填写到 等号后面。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">pdo_mysql.default_socket</span>= /usr/local/mysql/data/mysqld.sock</span><br></pre></td></tr></table></figure>
+<p>修改好之后，保存退出。重启apache或者nginx，必须要重启，不然不生效。<br>再次测试连接mysql，看是否已经正常。</p>
+<h3 id="2-设置软连接（推荐）"><a href="#2-设置软连接（推荐）" class="headerlink" title="2.设置软连接（推荐）"></a>2.设置软连接（推荐）</h3><p>执行命令即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s /usr/<span class="built_in">local</span>/mysql/data/mysqld.sock /var/lib/mysql/mysql.sock</span><br></pre></td></tr></table></figure>
+<p>前一个地址是mysql.sock或mysqld.sock的绝对路径，后一个路径为php没有找到socket文件的路径，我这边是<code>/var/lib/mysql/mysql.sock</code>,执行过命令之后，再次重新连接一下mysql，看是否已经正常。</p>
+
+          
+            <div class='article_footer'>
+              
+                
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
+  <div class='content'>
+    
+      <blockquote>
+        
+          
+            <p>本文链接：<a href=https://chenchenwuai.github.io/php/Can't%20connect%20to%20local%20MySQL/>https://chenchenwuai.github.io/php/Can't%20connect%20to%20local%20MySQL/</a></p>
+          
+        
+      </blockquote>
+    
+  </div>
+</section>
+
+  
+
+
+              
+            </div>
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-10-10T11:12:35+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2020-10-10 11:12</p>
+  </a>
+</div>
+
         
       
-    
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/php/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>php</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/mysql/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>mysql</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/mysql-sock/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>mysql.sock</p></a></div>
+
+
+        
+      
+        
+          
+
+        
+      
+    </div>
   </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+            
+              <a class='next' href='/typescript/typescript-learning-2/'>
+                <p class='title'>TypeScript学习(2)-接口<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>
+搬运TypeScript中文网 - 接口为了方便，无特殊说明，以下的js表示 JavaScript，ts表示TypeScript
+
+
+
+介绍TypeScript的核心原则之一是对值所具有的结构...</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
   
-    
-    <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-    
-    
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
+      
+      
+      
+      
+      
+      
+        <section id="comments">
+          <div id="valine_container" class="valine_thread">
+            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
 
   
 
 
-    
-  
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
 
 </div>
 <aside class='l_side'>
@@ -656,134 +791,18 @@
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <div class='avatar'>
-          <img no-lazy src='https://i.loli.net/2020/07/02/JKNsSczEb68Rlvj.gif'/>
-        </div>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">chenwuai'blog</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="mailto:zccjxx62@gmail.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-          
-            <a href="https://github.com/chenchenwuai"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-          
-            <a href="https://music.163.com/#/user/home?id=110896778"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
-
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
+  <section class="widget toc-wrapper shadow desktop mobile">
     
   <header>
     
-      <a href='/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/apache/" href="/categories/apache/"
-            id="categoriesapache"
-            ><div class='name'>apache</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/mysql/" href="/categories/mysql/"
-            id="categoriesmysql"
-            ><div class='name'>mysql</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/nginx/" href="/categories/nginx/"
-            id="categoriesnginx"
-            ><div class='name'>nginx</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/photo/" href="/categories/photo/"
-            id="categoriesphoto"
-            ><div class='name'>photo</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/php/" href="/categories/php/"
-            id="categoriesphp"
-            ><div class='name'>php</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/vscode/" href="/categories/vscode/"
-            id="categoriesvscode"
-            ><div class='name'>vscode</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%89%8D%E7%AB%AF/" href="/categories/%E5%89%8D%E7%AB%AF/"
-            id="categoriesE5898DE7ABAF"
-            ><div class='name'>前端</div><div class='badge'>(3)</div></a></li>
-        
-      </ul>
-    </div>
-  </section>
-
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/TypeScript/" style="font-size: 19px; color: #777">TypeScript</a> <a href="/tags/Unsplash/" style="font-size: 14px; color: #999">Unsplash</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/centos7/" style="font-size: 14px; color: #999">centos7</a> <a href="/tags/copyright/" style="font-size: 14px; color: #999">copyright</a> <a href="/tags/gzip/" style="font-size: 14px; color: #999">gzip</a> <a href="/tags/https/" style="font-size: 14px; color: #999">https</a> <a href="/tags/javascript/" style="font-size: 14px; color: #999">javascript</a> <a href="/tags/js%E8%84%9A%E6%9C%AC/" style="font-size: 14px; color: #999">js脚本</a> <a href="/tags/mysql/" style="font-size: 24px; color: #555">mysql</a> <a href="/tags/mysql-sock/" style="font-size: 14px; color: #999">mysql.sock</a> <a href="/tags/nginx/" style="font-size: 14px; color: #999">nginx</a> <a href="/tags/php/" style="font-size: 14px; color: #999">php</a> <a href="/tags/vscode/" style="font-size: 14px; color: #999">vscode</a> <a href="/tags/wss/" style="font-size: 14px; color: #999">wss</a>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-问题发现"><span class="toc-text">一.问题发现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-问题解析"><span class="toc-text">二.问题解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-问题解决"><span class="toc-text">三.问题解决</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-修改php-ini"><span class="toc-text">1.修改php.ini</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-设置软连接（推荐）"><span class="toc-text">2.设置软连接（推荐）</span></a></li></ol></li></ol>
     </div>
   </section>
 
