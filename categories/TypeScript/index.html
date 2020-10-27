@@ -18,7 +18,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>归档：2018 - chenwuai&#39;blog</title>
+  <title>分类：TypeScript - chenwuai&#39;blog</title>
   
 
   
@@ -477,7 +477,7 @@
   </div>
   
 
-  <div class="l_body">
+  <div class="l_body nocover">
     <div class='body-wrapper' id="pjax-container">
       
         <!--此文件用来存放一些不方便取值的变量-->
@@ -496,16 +496,16 @@
 
 <script>
   // 处理封面 此时 jquery 还没加载
-  if ("blog" == "none") { // 移除封面
+  if ("none" == "none") { // 移除封面
     document.getElementsByClassName('cover')[0].style.display = "none";
     document.getElementsByClassName('l_body')[0].classList.add("nocover");
     document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.add("show");
   } else {
-    if ("blog" == "blog") { // 半屏
+    if ("none" == "blog") { // 半屏
       document.getElementsByClassName('cover')[0].classList.remove("full");
       document.getElementsByClassName('cover')[0].classList.add("half");
       document.getElementsByClassName('scroll-down')[0].style.display = "none";
-    } else if ("blog" == "docs") { // 全屏
+    } else if ("none" == "docs") { // 全屏
       document.getElementsByClassName('cover')[0].classList.remove("half");
       document.getElementsByClassName('cover')[0].classList.add("full");
       document.getElementsByClassName('scroll-down')[0].style.display = "";
@@ -519,14 +519,14 @@
       
       
 
+
 <div class='l_main'>
-	
-		
+  
+    
+      
   <section class="post-list ">
     
       
-        
-          
         
           
         
@@ -548,8 +548,8 @@
         
           
   <h2 class="title">
-    <a href="/database/change-mysql-root-password/">
-      忘记 Mysql root账户密码如何修改
+    <a href="/typescript-learning-2/">
+      TypeScript学习(2)-接口
     </a>
   </h2>
 
@@ -563,9 +563,9 @@
               
   
   <div class='new-meta-item category'>
-    <a href='/categories/mysql/' rel="nofollow">
+    <a href='/categories/TypeScript/' rel="nofollow">
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>mysql</p>
+      <p>TypeScript</p>
     </a>
   </div>
 
@@ -576,7 +576,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2018-03-21 23:06</p>
+    <p>2020-09-13 11:29</p>
   </a>
 </div>
 
@@ -587,13 +587,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：330字</p>
+      <p>字数：1.8k字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：1分钟</p>
+      <p>时长：7分钟</p>
     </a>
   </div>
 
@@ -617,107 +617,16 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="关闭mysql登录验证"><a href="#关闭mysql登录验证" class="headerlink" title="关闭mysql登录验证"></a>关闭mysql登录验证</h3><p>打开命令行界面 然后输入打开 <em>my.cnf</em> 配置文件的命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/my.cnf</span><br></pre></td></tr></table></figure>
+        <blockquote>
+<p>学习资源为<a href="https://www.tslang.cn/docs/home.html" target="_blank" rel="noopener">TypeScript中文网</a></p>
+</blockquote>
+<p>为了方便，无特殊说明，以下的<code>js</code>表示 JavaScript，<code>ts</code>表示TypeScript</p>
       
     </div>
     
       
         <div class="button readmore">
-          <a href="/database/change-mysql-root-password/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/hello-world/">
-      Hello World
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2018-02-20 12:50</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-  <div class="new-meta-item wordcount">
-    <a class='notlink'>
-      <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：73字</p>
-    </a>
-  </div>
-  <div class="new-meta-item readtime">
-    <a class='notlink'>
-      <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：1分钟</p>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/hello-world/">
+          <a href="/typescript-learning-2/">
             阅读全文 <i class="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -740,7 +649,9 @@
   
 
 
-	
+    
+  
+
 </div>
 <aside class='l_side'>
   
@@ -890,14 +801,6 @@
 
 </aside>
 
-
-
-
-
-	<!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-	
-
-	
 
 
     </div>

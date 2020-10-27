@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta name="renderer" content="webkit">
@@ -18,9 +16,13 @@
 
   <!-- 页面元数据 -->
   
-  <title>归档：2018 - chenwuai&#39;blog</title>
+  <title>znu-event 一个简单的event emitter - chenwuai&#39;blog</title>
+  
+    <meta name="keywords" content="javascript">
   
 
+  
+    <meta name="description" content="znu-event 一个简单的event emitter，无依赖，TypeScript、rollup、自动测试、一键发布到GitHub和NPM。GitHubNPM如果帮助到了你，请给我一个star~ 💖，如果你发现bug，请尽情的在下方评论或者提issue。">
   
 
   <!-- feed -->
@@ -70,7 +72,7 @@
   
   
   <div class="cover-wrapper">
-    <cover class='cover ' style="display: none;">
+    <cover class='cover post' style="display: none;">
       <div class='cover-body'>
   <div class='a'>
     
@@ -477,7 +479,7 @@
   </div>
   
 
-  <div class="l_body">
+  <div class="l_body nocover">
     <div class='body-wrapper' id="pjax-container">
       
         <!--此文件用来存放一些不方便取值的变量-->
@@ -486,9 +488,12 @@
 
 
 <div id="pjax-data" style="display: none">
-  <div id="pjax-ispage">false</div>
-  <div id="pjax-pageTitle"></div>
+  <div id="pjax-ispage">true</div>
+  <div id="pjax-pageTitle">znu-event 一个简单的event emitter</div>
   <div id="pjax-enable-cover">true</div>
+  
+  <div id="valine-path">none</div>
+  <div id="valine-placeholder">none</div>
   
   
 </div>
@@ -496,16 +501,16 @@
 
 <script>
   // 处理封面 此时 jquery 还没加载
-  if ("blog" == "none") { // 移除封面
+  if ("none" == "none") { // 移除封面
     document.getElementsByClassName('cover')[0].style.display = "none";
     document.getElementsByClassName('l_body')[0].classList.add("nocover");
     document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.add("show");
   } else {
-    if ("blog" == "blog") { // 半屏
+    if ("none" == "blog") { // 半屏
       document.getElementsByClassName('cover')[0].classList.remove("full");
       document.getElementsByClassName('cover')[0].classList.add("half");
       document.getElementsByClassName('scroll-down')[0].style.display = "none";
-    } else if ("blog" == "docs") { // 全屏
+    } else if ("none" == "docs") { // 全屏
       document.getElementsByClassName('cover')[0].classList.remove("half");
       document.getElementsByClassName('cover')[0].classList.add("full");
       document.getElementsByClassName('scroll-down')[0].style.display = "";
@@ -520,24 +525,11 @@
       
 
 <div class='l_main'>
-	
-		
-  <section class="post-list ">
-    
-      
-        
-          
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
   
+
+  
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+      
 
 
   <section class='meta'>
@@ -547,25 +539,36 @@
       <div class="meta" id="header-meta">
         
           
-  <h2 class="title">
-    <a href="/database/change-mysql-root-password/">
-      忘记 Mysql root账户密码如何修改
+  <h1 class="title">
+    <a href="/javascript/znu-event-A-sample-event-emitter/">
+      znu-event 一个简单的event emitter
     </a>
-  </h2>
+  </h1>
 
 
         
         <div class='new-meta-box'>
           
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="/" rel="nofollow">
+    <img no-lazy src="https://i.loli.net/2020/07/02/JKNsSczEb68Rlvj.gif">
+    <p>chenwuai</p>
+  </a>
+</div>
+
             
           
             
               
   
   <div class='new-meta-item category'>
-    <a href='/categories/mysql/' rel="nofollow">
+    <a href='/categories/%E5%89%8D%E7%AB%AF/' rel="nofollow">
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>mysql</p>
+      <p>前端</p>
     </a>
   </div>
 
@@ -576,7 +579,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2018-03-21 23:06</p>
+    <p>2020-07-15 18:30</p>
   </a>
 </div>
 
@@ -587,13 +590,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：330字</p>
+      <p>字数：571字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：1分钟</p>
+      <p>时长：2分钟</p>
     </a>
   </div>
 
@@ -614,133 +617,326 @@
   </section>
 
 
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="关闭mysql登录验证"><a href="#关闭mysql登录验证" class="headerlink" title="关闭mysql登录验证"></a>关闭mysql登录验证</h3><p>打开命令行界面 然后输入打开 <em>my.cnf</em> 配置文件的命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/my.cnf</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/database/change-mysql-root-password/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          <p>znu-event 一个简单的event emitter，无依赖，TypeScript、rollup、自动测试、一键发布到GitHub和NPM。<br><a href="https://github.com/chenchenwuai/znu-event" target="_blank" rel="noopener">GitHub</a><br><a href="https://www.npmjs.com/package/znu-event" target="_blank" rel="noopener">NPM</a><br>如果帮助到了你，请给我一个star<del>~</del> 💖，如果你发现bug，请尽情的在下方评论或者提issue。</p>
+<a id="more"></a>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i znu-event</span><br></pre></td></tr></table></figure>
 
-          </div>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> EventEmitter <span class="keyword">from</span>  <span class="string">'./znu-event'</span>;</span><br><span class="line"><span class="keyword">const</span> emitter = <span class="keyword">new</span> EventEmitter();</span><br><span class="line">emitter.on(<span class="string">'add'</span>, data=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data) <span class="comment">// 1</span></span><br><span class="line">&#125;);</span><br><span class="line">emitter.emit(<span class="string">'add'</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="on-eventName-listener"><a href="#on-eventName-listener" class="headerlink" title="on(eventName, listener)"></a>on(eventName, listener)</h3><p>绑定事件</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>数据类型</th>
+<th>是否必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>eventName</td>
+<td>参数</td>
+<td><code>String/Symbol</code></td>
+<td>是</td>
+<td>事件名称</td>
+</tr>
+<tr>
+<td>listener</td>
+<td>参数</td>
+<td><code>Function</code></td>
+<td>是</td>
+<td>对应的回调函数</td>
+</tr>
+<tr>
+<td>emitter</td>
+<td>返回值</td>
+<td><code>EventEmitter</code></td>
+<td>—</td>
+<td>实例</td>
+</tr>
+</tbody></table>
+<h3 id="off-eventName-listener"><a href="#off-eventName-listener" class="headerlink" title="off(eventName, listener)"></a>off(eventName, listener)</h3><p>解除绑定, 如果不填写<code>listener</code>, 那么<code>eventName</code>对应的<code>listener</code>都会被移除.</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>数据类型</th>
+<th>是否必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>eventName</td>
+<td>参数</td>
+<td><code>String/Symbol</code></td>
+<td>是</td>
+<td>事件名称</td>
+</tr>
+<tr>
+<td>listener</td>
+<td>参数</td>
+<td><code>Function</code></td>
+<td>是</td>
+<td>对应的回调函数</td>
+</tr>
+<tr>
+<td>emitter</td>
+<td>返回值</td>
+<td><code>EventEmitter</code></td>
+<td>—</td>
+<td>实例</td>
+</tr>
+</tbody></table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> callback = <span class="function"><span class="params">data</span>=&gt;</span>&#123;</span><br><span class="line">    alert(data)</span><br><span class="line">&#125;;</span><br><span class="line">emitter.on(<span class="string">'add'</span>, callback);</span><br><span class="line"><span class="comment">// 解除绑定</span></span><br><span class="line">emitter.off(<span class="string">'add'</span>, callback);</span><br><span class="line"><span class="comment">// add事件不会触发</span></span><br><span class="line">emitter.emit(<span class="string">'add'</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="once-eventName-listener"><a href="#once-eventName-listener" class="headerlink" title="once(eventName, listener)"></a>once(eventName, listener)</h3><p>绑定事件, 只触发一次</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>数据类型</th>
+<th>是否必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>eventName</td>
+<td>参数</td>
+<td><code>String/Symbol</code></td>
+<td>是</td>
+<td>事件名称</td>
+</tr>
+<tr>
+<td>listener</td>
+<td>参数</td>
+<td><code>Function</code></td>
+<td>是</td>
+<td>对应的回调函数</td>
+</tr>
+<tr>
+<td>emitter</td>
+<td>返回值</td>
+<td><code>EventEmitter</code></td>
+<td>—</td>
+<td>实例</td>
+</tr>
+</tbody></table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> callback = <span class="function"><span class="params">data</span>=&gt;</span>&#123;</span><br><span class="line">    alert(data)</span><br><span class="line">&#125;;</span><br><span class="line">emitter.once(<span class="string">'add'</span>, callback);</span><br><span class="line"><span class="comment">// add事件触发</span></span><br><span class="line">emitter.emit(<span class="string">'add'</span>, <span class="number">1</span>);</span><br><span class="line"><span class="comment">// add事件不会触发</span></span><br><span class="line">emitter.emit(<span class="string">'add'</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="emit-eventName-…args"><a href="#emit-eventName-…args" class="headerlink" title="emit(eventName [, …args])"></a>emit(eventName [, …args])</h3><p>触发事件, 支持任意数量参数</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>数据类型</th>
+<th>是否必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>eventName</td>
+<td>参数</td>
+<td><code>String/Symbol</code></td>
+<td>是</td>
+<td>事件名称</td>
+</tr>
+<tr>
+<td>…args</td>
+<td>参数</td>
+<td><code>Any</code></td>
+<td>是</td>
+<td>对应的回调函数</td>
+</tr>
+<tr>
+<td>emitter</td>
+<td>返回值</td>
+<td><code>Boolean</code></td>
+<td>—</td>
+<td>实例</td>
+</tr>
+</tbody></table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> callback = <span class="function">(<span class="params">a,b,c,d</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>(a,b,c,d); <span class="comment">// 1,2,3,4</span></span><br><span class="line">&#125;;</span><br><span class="line">emitter.once(<span class="string">'add'</span>, callback);</span><br><span class="line"><span class="comment">// add事件触发</span></span><br><span class="line">emitter.emit(<span class="string">'add'</span>, <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="has-eventName"><a href="#has-eventName" class="headerlink" title="has(eventName)"></a>has(eventName)</h3><p>是否绑定了指定事件</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>数据类型</th>
+<th>是否必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>eventName</td>
+<td>参数</td>
+<td><code>String/Symbol</code></td>
+<td>是</td>
+<td>事件名称</td>
+</tr>
+</tbody></table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">emitter.on(<span class="string">'add'</span>, callback);</span><br><span class="line"></span><br><span class="line">emitter.has(<span class="string">'add'</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="eventNames"><a href="#eventNames" class="headerlink" title="eventNames()"></a>eventNames()</h3><p>返回所有绑定事件名称</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">emitter.eventNames();</span><br></pre></td></tr></table></figure>
+
+<h3 id="offAll"><a href="#offAll" class="headerlink" title="offAll()"></a>offAll()</h3><p>解除所有绑定事件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> callback = <span class="function">(<span class="params">a,b,c,d</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>(a,b,c,d); <span class="comment">// 1,2,3,4</span></span><br><span class="line">&#125;;</span><br><span class="line">emitter.on(<span class="string">'add'</span>, callback);</span><br><span class="line">emitter.on(<span class="string">'edf'</span>, callback);</span><br><span class="line">emitter.offAll();</span><br><span class="line"></span><br><span class="line"><span class="comment">// add，edf事件不会触发</span></span><br><span class="line">emitter.emit(<span class="string">'add'</span>, <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>);</span><br><span class="line">emitter.emit(<span class="string">'edf'</span>, <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="destroy"><a href="#destroy" class="headerlink" title="destroy()"></a>destroy()</h3><p>销毁实例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> callback = <span class="function">(<span class="params">a,b,c,d</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>(a,b,c,d); <span class="comment">// 1,2,3,4</span></span><br><span class="line">&#125;;</span><br><span class="line">emitter.once(<span class="string">'add'</span>, callback);</span><br><span class="line">emitter.destroy();</span><br><span class="line"></span><br><span class="line"><span class="comment">// add事件不会触发</span></span><br><span class="line">emitter.emit(<span class="string">'add'</span>, <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+
+
+          
+            <div class='article_footer'>
+              
+                
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
+  <div class='content'>
+    
+      <blockquote>
         
-      
+          
+            <p>本文链接：<a href=https://chenchenwuai.github.io/javascript/znu-event-A-sample-event-emitter/>https://chenchenwuai.github.io/javascript/znu-event-A-sample-event-emitter/</a></p>
+          
         
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
+      </blockquote>
+    
+  </div>
+</section>
+
   
 
 
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/hello-world/">
-      Hello World
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
               
-
-            
+            </div>
           
-            
-              <div class="new-meta-item date">
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-10-27T09:51:02+08:00">
   <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2018-02-20 12:50</p>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2020-10-27 09:51</p>
   </a>
 </div>
 
-            
-          
-            
-              
-  <div class="new-meta-item wordcount">
-    <a class='notlink'>
-      <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：73字</p>
-    </a>
-  </div>
-  <div class="new-meta-item readtime">
-    <a class='notlink'>
-      <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：1分钟</p>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
         
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/javascript/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>javascript</p></a></div>
+
+
+        
+      
+        
+          
+
+        
       
     </div>
-    
-      
-        <div class="button readmore">
-          <a href="/hello-world/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
   </section>
-</article>
 
+
+        
+        
+          <div class="prev-next">
+            
+              <a class='prev' href='/recommended-vscode-plugin/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>vscode 插件推荐</p>
+                <p class='content'>VSCode Plugin
+
+提效类插件Bracket Pair Colorizer快速定位括号,它为代码中的各种结对的括号兄弟们提供了颜色高亮等功能。相关链接: github
+
+Veturvu...</p>
+              </a>
+            
+            
+              <a class='next' href='/typescript/typescript-learning-1/'>
+                <p class='title'>TypeScript学习(1)-基础类型<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>
+学习资源为TypeScript中文网
+
+为了方便，无特殊说明，以下的js表示 JavaScript，ts表示TypeScript
+
+基础类型基础类型包括 boolean,number,stri...</p>
+              </a>
+            
           </div>
         
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
       
-    
-  </section>
-  
-    
-    <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-    
-    
+      
+      
+      
+      
+      
+        <section id="comments">
+          <div id="valine_container" class="valine_thread">
+            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
 
   
 
 
-	
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -748,139 +944,18 @@
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <div class='avatar'>
-          <img no-lazy src='https://i.loli.net/2020/07/02/JKNsSczEb68Rlvj.gif'/>
-        </div>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">chenwuai'blog</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="mailto:zccjxx62@gmail.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-          
-            <a href="https://github.com/chenchenwuai"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-          
-            <a href="https://music.163.com/#/user/home?id=110896778"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
-
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
+  <section class="widget toc-wrapper shadow desktop mobile">
     
   <header>
     
-      <a href='/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/TypeScript/" href="/categories/TypeScript/"
-            id="categoriesTypeScript"
-            ><div class='name'>TypeScript</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/apache/" href="/categories/apache/"
-            id="categoriesapache"
-            ><div class='name'>apache</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/mysql/" href="/categories/mysql/"
-            id="categoriesmysql"
-            ><div class='name'>mysql</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/nginx/" href="/categories/nginx/"
-            id="categoriesnginx"
-            ><div class='name'>nginx</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/photo/" href="/categories/photo/"
-            id="categoriesphoto"
-            ><div class='name'>photo</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/php/" href="/categories/php/"
-            id="categoriesphp"
-            ><div class='name'>php</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/vscode/" href="/categories/vscode/"
-            id="categoriesvscode"
-            ><div class='name'>vscode</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%89%8D%E7%AB%AF/" href="/categories/%E5%89%8D%E7%AB%AF/"
-            id="categoriesE5898DE7ABAF"
-            ><div class='name'>前端</div><div class='badge'>(4)</div></a></li>
-        
-      </ul>
-    </div>
-  </section>
-
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/TypeScript/" style="font-size: 24px; color: #555">TypeScript</a> <a href="/tags/Unsplash/" style="font-size: 14px; color: #999">Unsplash</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/centos7/" style="font-size: 14px; color: #999">centos7</a> <a href="/tags/copyright/" style="font-size: 14px; color: #999">copyright</a> <a href="/tags/gzip/" style="font-size: 14px; color: #999">gzip</a> <a href="/tags/https/" style="font-size: 14px; color: #999">https</a> <a href="/tags/javascript/" style="font-size: 19px; color: #777">javascript</a> <a href="/tags/js%E8%84%9A%E6%9C%AC/" style="font-size: 14px; color: #999">js脚本</a> <a href="/tags/mysql/" style="font-size: 24px; color: #555">mysql</a> <a href="/tags/mysql-sock/" style="font-size: 14px; color: #999">mysql.sock</a> <a href="/tags/nginx/" style="font-size: 14px; color: #999">nginx</a> <a href="/tags/php/" style="font-size: 14px; color: #999">php</a> <a href="/tags/vscode/" style="font-size: 14px; color: #999">vscode</a> <a href="/tags/wss/" style="font-size: 14px; color: #999">wss</a>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用"><span class="toc-text">使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法"><span class="toc-text">方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#on-eventName-listener"><span class="toc-text">on(eventName, listener)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#off-eventName-listener"><span class="toc-text">off(eventName, listener)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#once-eventName-listener"><span class="toc-text">once(eventName, listener)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#emit-eventName-…args"><span class="toc-text">emit(eventName [, …args])</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#has-eventName"><span class="toc-text">has(eventName)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eventNames"><span class="toc-text">eventNames()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#offAll"><span class="toc-text">offAll()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#destroy"><span class="toc-text">destroy()</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -890,14 +965,6 @@
 
 </aside>
 
-
-
-
-
-	<!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-	
-
-	
 
 
     </div>
