@@ -5,10 +5,6 @@
   <!-- SEO相关 -->
   
     
-      
-        <meta name="robots" content="noindex,follow">
-      
-    
   
   <!-- 渲染优化 -->
   <meta name="renderer" content="webkit">
@@ -20,9 +16,13 @@
 
   <!-- 页面元数据 -->
   
-  <title>chenwuai&#39;blog</title>
+  <title>CSS中的 BFC 是什么？ - chenwuai&#39;blog</title>
+  
+    <meta name="keywords" content="CSS,BFC">
   
 
+  
+    <meta name="description" content="BFC: 块级格式化上下文 (Block Formatting Context)">
   
 
   <!-- feed -->
@@ -72,7 +72,7 @@
   
   
   <div class="cover-wrapper">
-    <cover class='cover ' style="display: none;">
+    <cover class='cover post' style="display: none;">
       <div class='cover-body'>
   <div class='a'>
     
@@ -488,9 +488,12 @@
 
 
 <div id="pjax-data" style="display: none">
-  <div id="pjax-ispage">false</div>
-  <div id="pjax-pageTitle"></div>
+  <div id="pjax-ispage">true</div>
+  <div id="pjax-pageTitle">CSS中的 BFC 是什么？</div>
   <div id="pjax-enable-cover">true</div>
+  
+  <div id="valine-path">none</div>
+  <div id="valine-placeholder">none</div>
   
   
 </div>
@@ -523,14 +526,10 @@
 
 <div class='l_main'>
   
-  <section class="post-list ">
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
+
   
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+      
 
 
   <section class='meta'>
@@ -540,25 +539,36 @@
       <div class="meta" id="header-meta">
         
           
-  <h2 class="title">
-    <a href="/database/mysql-remote-can-not-login/">
-      mysql root账户远程不能登录解决方法
+  <h1 class="title">
+    <a href="/front-end/CSS_What-Is-BFC/">
+      CSS中的 BFC 是什么？
     </a>
-  </h2>
+  </h1>
 
 
         
         <div class='new-meta-box'>
           
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="/" rel="nofollow">
+    <img no-lazy src="https://i.loli.net/2020/07/02/JKNsSczEb68Rlvj.gif">
+    <p>chenwuai</p>
+  </a>
+</div>
+
             
           
             
               
   
   <div class='new-meta-item category'>
-    <a href='/categories/mysql/' rel="nofollow">
+    <a href='/categories/CSS/' rel="nofollow">
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>mysql</p>
+      <p>CSS</p>
     </a>
   </div>
 
@@ -569,7 +579,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2019-06-05 22:29</p>
+    <p>2020-10-27 21:00</p>
   </a>
 </div>
 
@@ -580,13 +590,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：502字</p>
+      <p>字数：664字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：1分钟</p>
+      <p>时长：2分钟</p>
     </a>
   </div>
 
@@ -607,348 +617,179 @@
   </section>
 
 
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>mysql 远程不能登录一般是没有设置 <em>host</em> 为 <em>%</em> 或者对应的ip地址<br>这种情况下一般是通过修改原来 <em>root</em> 账户的 <em>host</em> 为 <em>%</em> 来进行远程登录，但是这种设置也是有一个缺点，就是某种情况下本地命令行就不能登录了。</p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/database/mysql-remote-can-not-login/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
           
-  <h2 class="title">
-    <a href="/apache/enable-apache-https-and-forward-wss/">
-      CentOS 7 + Apache 配置https + wss转发
-    </a>
-  </h2>
+          <p>BFC: 块级格式化上下文 (Block Formatting Context)</p>
+<a id="more"></a>
+<blockquote>
+<p>建议先理解CSS的<a href="https://chenchenwuai.github.io/front-end/CSS_Box_Model/">盒模型</a></p>
+</blockquote>
+<h2 id="什么是BFC"><a href="#什么是BFC" class="headerlink" title="什么是BFC"></a>什么是BFC</h2><p>BFC是Web页面的可视CSS渲染的一部分，是块盒子的布局过程发生的区域，也是浮动元素与其他元素交互的区域。W3C对BFC的定义如下：</p>
+<blockquote>
+<p>浮动元素和绝对定位元素，非块级盒子的块级容器（例如 inline-blocks, table-cells, 和 table-captions），以及overflow值不为“visiable”的块级盒子，都会为他们的内容创建新的BFC（块级格式上下文）。</p>
+</blockquote>
+<p>BFC是一个独立的布局环境，其中的元素布局是不受外界的影响，通俗的说可以把BFC理解为一个封闭的箱子，箱子内部的元素无论怎么放置，都不会影响到外部。并且在一个 BFC 中，块盒与行盒（行盒由一行中所有的内联元素所组成）都会垂直的沿着其父元素的边框排列。</p>
+<p>下列方式会创建BFC：</p>
+<ul>
+<li>根元素（<code>&lt;html&gt;）</code></li>
+<li>浮动元素（元素的 <code>float</code> 不是 <code>none</code>）</li>
+<li>绝对定位元素（元素的 <code>position</code> 为 <code>absolute</code> 或 <code>fixed</code>）</li>
+<li>行内块元素（元素的 <code>display</code> 为 <code>inline-block</code>）</li>
+<li>表格单元格（元素的 <code>display</code> 为 <code>table-cell</code>，HTML表格单元格默认为该值）</li>
+<li>表格标题    （元素的 <code>display</code> 为 <code>table-caption</code>，HTML表格标题默认为该值）</li>
+<li><code>display</code> 值为 <code>flow-root</code> 的元素</li>
+<li>匿名表格单元格元素（元素的 <code>display</code> 为 <code>table、``table-row</code>、 <code>table-row-group、``table-header-group、``table-footer-group</code>（分别是HTML table、row、tbody、thead、tfoot 的默认属性）或 <code>inline-table</code>）</li>
+<li><code>overflow</code> 值不为 <code>visible</code> 的块元素</li>
+<li><code>contain</code> 值为 <code>layout</code>、<code>content</code>或 paint 的元素</li>
+<li>弹性元素（<code>display</code> 为 <code>flex</code> 或 <code>inline-flex</code>元素的直接子元素）</li>
+<li>网格元素（<code>display</code> 为 <code>grid</code> 或 <code>inline-grid</code> 元素的直接子元素）</li>
+<li>多列容器（元素的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/column-count" target="_blank" rel="noopener"><code>column-count</code></a> 或 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/column-width" target="_blank" rel="noopener"><code>column-width</code></a> 不为 <code>auto，包括 ``column-count</code> 为 <code>1</code>）</li>
+<li><code>column-span</code> 为 <code>all</code> 的元素始终会创建一个新的BFC，即使该元素没有包裹在一个多列容器中（<a href="https://github.com/w3c/csswg-drafts/commit/a8634b96900279916bd6c505fda88dda71d8ec51" target="_blank" rel="noopener">标准变更</a>，<a href="https://bugs.chromium.org/p/chromium/issues/detail?id=709362" target="_blank" rel="noopener">Chrome bug</a>）（未验证）。</li>
+</ul>
+<h2 id="BFC的特性"><a href="#BFC的特性" class="headerlink" title="BFC的特性"></a>BFC的特性</h2><ul>
+<li><p>BFC内部的块级盒会在垂直方向上一个接一个排列。（普通流）</p>
+</li>
+<li><p>计算BFC的高度时，浮动元素也会参与计算。</p>
+</li>
+<li><p>同一BFC下的相邻块级元素可能发生外边距折叠。(float可以避免外边距折叠 或者 打破同一BFC的结构)</p>
+</li>
+<li><p>BFC元素不会和它的子元素发生外边距折叠。</p>
+</li>
+<li><p>浮动盒的区域不会和BFC重叠。</p>
+</li>
+<li><p>BFC是一个独立的容器外面的元素不会影响BFC内部反之亦然。</p>
+</li>
+</ul>
+<h2 id="BFC的作用"><a href="#BFC的作用" class="headerlink" title="BFC的作用"></a>BFC的作用</h2><h3 id="清除内部浮动"><a href="#清除内部浮动" class="headerlink" title="清除内部浮动"></a>清除内部浮动</h3><p>未完待续…</p>
 
-
-        
-        <div class='new-meta-box'>
           
-            
-          
-            
+            <div class='article_footer'>
               
+                
   
-  <div class='new-meta-item category'>
-    <a href='/categories/apache/' rel="nofollow">
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>apache</p>
-    </a>
-  </div>
+    
+    
 
 
-            
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
+  <div class='content'>
+    
+      <blockquote>
+        
           
-            
-              <div class="new-meta-item date">
+            <p>本文链接：<a href=https://chenchenwuai.github.io/front-end/CSS_What-Is-BFC/>https://chenchenwuai.github.io/front-end/CSS_What-Is-BFC/</a></p>
+          
+        
+      </blockquote>
+    
+  </div>
+</section>
+
+  
+
+
+              
+            </div>
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-10-27T17:58:48+08:00">
   <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2019-04-06 09:08</p>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2020-10-27 17:58</p>
   </a>
 </div>
 
-            
-          
-            
-              
-  <div class="new-meta-item wordcount">
-    <a class='notlink'>
-      <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：2.1k字</p>
-    </a>
-  </div>
-  <div class="new-meta-item readtime">
-    <a class='notlink'>
-      <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：11分钟</p>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
         
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="安装openssl库"><a href="#安装openssl库" class="headerlink" title="安装openssl库"></a>安装openssl库</h3><p>1.检查是否已安装 <code>openssl</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">openssl version -a</span><br><span class="line"><span class="comment"># 打印出下面类似的信息表明已安装</span></span><br><span class="line"><span class="comment"># OpenSSL 1.0.2k-fips  26 Jan 2017.....</span></span><br><span class="line"><span class="comment"># built on: reproducible build, date unspecified</span></span><br></pre></td></tr></table></figure>
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/CSS/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>CSS</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/BFC/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>BFC</p></a></div>
+
+
+        
+      
+        
+          
+
+        
       
     </div>
-    
-      
-        <div class="button readmore">
-          <a href="/apache/enable-apache-https-and-forward-wss/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
   </section>
-</article>
 
+
+        
+        
+          <div class="prev-next">
+            
+            
+              <a class='next' href='/front-end/CSS_Box_Model/'>
+                <p class='title'>CSS 盒模型详解 + 定位规则<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>浏览器的渲染引擎会根据标准之一的 CSS 基础框盒模型（CSS basic box model）对html文档进行渲染，将所有元素表示为一个个矩形的盒子（box）。CSS 决定这些盒子的大小、位...</p>
+              </a>
+            
           </div>
         
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
+      </section>
+    </article>
   
 
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/database/change-mysql-root-password/">
-      忘记 Mysql root账户密码如何修改
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
   
-  <div class='new-meta-item category'>
-    <a href='/categories/mysql/' rel="nofollow">
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>mysql</p>
-    </a>
-  </div>
+    <!-- 显示推荐文章和评论 -->
 
 
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2018-03-21 23:06</p>
-  </a>
-</div>
 
-            
-          
-            
-              
-  <div class="new-meta-item wordcount">
-    <a class='notlink'>
-      <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：330字</p>
-    </a>
-  </div>
-  <div class="new-meta-item readtime">
-    <a class='notlink'>
-      <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：1分钟</p>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
       
-        <h3 id="关闭mysql登录验证"><a href="#关闭mysql登录验证" class="headerlink" title="关闭mysql登录验证"></a>关闭mysql登录验证</h3><p>打开命令行界面 然后输入打开 <em>my.cnf</em> 配置文件的命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/my.cnf</span><br></pre></td></tr></table></figure>
       
-    </div>
-    
       
-        <div class="button readmore">
-          <a href="/database/change-mysql-root-password/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
       
-    
-  </section>
-</article>
-
+      
+      
+        <section id="comments">
+          <div id="valine_container" class="valine_thread">
+            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
           </div>
-        
+        </section>
       
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
+      
+    </section>
+  </article>
+
+
   
 
 
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/hello-world/">
-      Hello World
-    </a>
-  </h2>
 
 
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
 
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2018-02-20 12:50</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-  <div class="new-meta-item wordcount">
-    <a class='notlink'>
-      <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：73字</p>
-    </a>
-  </div>
-  <div class="new-meta-item readtime">
-    <a class='notlink'>
-      <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：1分钟</p>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/hello-world/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-      <br>
-      <div class="prev-next">
-        
-          <a class="prev" rel="prev" href="/">
-            <section class="post prev white-box shadow" >
-              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;
-            </section>
-          </a>
-        
-        <p class="current">
-          2 / 2
-        </p>
-        
-      </div>
-    
-    <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-    
-    
-
-  
 
 
 </div>
@@ -958,139 +799,18 @@
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <div class='avatar'>
-          <img no-lazy src='https://i.loli.net/2020/07/02/JKNsSczEb68Rlvj.gif'/>
-        </div>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">chenwuai'blog</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="mailto:zccjxx62@gmail.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-          
-            <a href="https://github.com/chenchenwuai"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-          
-            <a href="https://music.163.com/#/user/home?id=110896778"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
-
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
+  <section class="widget toc-wrapper shadow desktop mobile">
     
   <header>
     
-      <a href='/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/CSS/" href="/categories/CSS/"
-            id="categoriesCSS"
-            ><div class='name'>CSS</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/apache/" href="/categories/apache/"
-            id="categoriesapache"
-            ><div class='name'>apache</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/mysql/" href="/categories/mysql/"
-            id="categoriesmysql"
-            ><div class='name'>mysql</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/nginx/" href="/categories/nginx/"
-            id="categoriesnginx"
-            ><div class='name'>nginx</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/photo/" href="/categories/photo/"
-            id="categoriesphoto"
-            ><div class='name'>photo</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/php/" href="/categories/php/"
-            id="categoriesphp"
-            ><div class='name'>php</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/vscode/" href="/categories/vscode/"
-            id="categoriesvscode"
-            ><div class='name'>vscode</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%89%8D%E7%AB%AF/" href="/categories/%E5%89%8D%E7%AB%AF/"
-            id="categoriesE5898DE7ABAF"
-            ><div class='name'>前端</div><div class='badge'>(4)</div></a></li>
-        
-      </ul>
-    </div>
-  </section>
-
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/BFC/" style="font-size: 14px; color: #999">BFC</a> <a href="/tags/CSS/" style="font-size: 19px; color: #777">CSS</a> <a href="/tags/TypeScript/" style="font-size: 19px; color: #777">TypeScript</a> <a href="/tags/Unsplash/" style="font-size: 14px; color: #999">Unsplash</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/centos7/" style="font-size: 14px; color: #999">centos7</a> <a href="/tags/copyright/" style="font-size: 14px; color: #999">copyright</a> <a href="/tags/gzip/" style="font-size: 14px; color: #999">gzip</a> <a href="/tags/https/" style="font-size: 14px; color: #999">https</a> <a href="/tags/javascript/" style="font-size: 19px; color: #777">javascript</a> <a href="/tags/js%E8%84%9A%E6%9C%AC/" style="font-size: 14px; color: #999">js脚本</a> <a href="/tags/mysql/" style="font-size: 24px; color: #555">mysql</a> <a href="/tags/mysql-sock/" style="font-size: 14px; color: #999">mysql.sock</a> <a href="/tags/nginx/" style="font-size: 14px; color: #999">nginx</a> <a href="/tags/php/" style="font-size: 14px; color: #999">php</a> <a href="/tags/vscode/" style="font-size: 14px; color: #999">vscode</a> <a href="/tags/wss/" style="font-size: 14px; color: #999">wss</a> <a href="/tags/%E7%9B%92%E6%A8%A1%E5%9E%8B/" style="font-size: 14px; color: #999">盒模型</a>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是BFC"><span class="toc-text">什么是BFC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BFC的特性"><span class="toc-text">BFC的特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BFC的作用"><span class="toc-text">BFC的作用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#清除内部浮动"><span class="toc-text">清除内部浮动</span></a></li></ol></li></ol>
     </div>
   </section>
 

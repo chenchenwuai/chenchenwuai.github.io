@@ -5,9 +5,7 @@
   <!-- SEO相关 -->
   
     
-      
-        <meta name="robots" content="noindex,follow">
-      
+      <meta name="robots" content="noindex,follow">
     
   
   <!-- 渲染优化 -->
@@ -20,7 +18,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>chenwuai&#39;blog</title>
+  <title>分类：CSS - chenwuai&#39;blog</title>
   
 
   
@@ -521,10 +519,21 @@
       
       
 
+
 <div class='l_main'>
   
+    
+      
   <section class="post-list ">
     
+      
+        
+          
+        
+          
+        
+      
+    
     
       
         
@@ -541,8 +550,8 @@
         
           
   <h2 class="title">
-    <a href="/database/mysql-remote-can-not-login/">
-      mysql root账户远程不能登录解决方法
+    <a href="/front-end/CSS_What-Is-BFC/">
+      CSS中的 BFC 是什么？
     </a>
   </h2>
 
@@ -556,9 +565,9 @@
               
   
   <div class='new-meta-item category'>
-    <a href='/categories/mysql/' rel="nofollow">
+    <a href='/categories/CSS/' rel="nofollow">
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>mysql</p>
+      <p>CSS</p>
     </a>
   </div>
 
@@ -569,7 +578,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2019-06-05 22:29</p>
+    <p>2020-10-27 21:00</p>
   </a>
 </div>
 
@@ -580,13 +589,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：502字</p>
+      <p>字数：664字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：1分钟</p>
+      <p>时长：2分钟</p>
     </a>
   </div>
 
@@ -610,13 +619,13 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>mysql 远程不能登录一般是没有设置 <em>host</em> 为 <em>%</em> 或者对应的ip地址<br>这种情况下一般是通过修改原来 <em>root</em> 账户的 <em>host</em> 为 <em>%</em> 来进行远程登录，但是这种设置也是有一个缺点，就是某种情况下本地命令行就不能登录了。</p>
+        <p>BFC: 块级格式化上下文 (Block Formatting Context)</p>
       
     </div>
     
       
         <div class="button readmore">
-          <a href="/database/mysql-remote-can-not-login/">
+          <a href="/front-end/CSS_What-Is-BFC/">
             阅读全文 <i class="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -642,8 +651,8 @@
         
           
   <h2 class="title">
-    <a href="/apache/enable-apache-https-and-forward-wss/">
-      CentOS 7 + Apache 配置https + wss转发
+    <a href="/front-end/CSS_Box_Model/">
+      CSS 盒模型详解 + 定位规则
     </a>
   </h2>
 
@@ -657,9 +666,9 @@
               
   
   <div class='new-meta-item category'>
-    <a href='/categories/apache/' rel="nofollow">
+    <a href='/categories/CSS/' rel="nofollow">
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>apache</p>
+      <p>CSS</p>
     </a>
   </div>
 
@@ -670,7 +679,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2019-04-06 09:08</p>
+    <p>2020-10-27 19:05</p>
   </a>
 </div>
 
@@ -681,13 +690,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：2.1k字</p>
+      <p>字数：4.1k字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：11分钟</p>
+      <p>时长：15分钟</p>
     </a>
   </div>
 
@@ -711,209 +720,13 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="安装openssl库"><a href="#安装openssl库" class="headerlink" title="安装openssl库"></a>安装openssl库</h3><p>1.检查是否已安装 <code>openssl</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">openssl version -a</span><br><span class="line"><span class="comment"># 打印出下面类似的信息表明已安装</span></span><br><span class="line"><span class="comment"># OpenSSL 1.0.2k-fips  26 Jan 2017.....</span></span><br><span class="line"><span class="comment"># built on: reproducible build, date unspecified</span></span><br></pre></td></tr></table></figure>
+        <p>浏览器的渲染引擎会根据标准之一的 CSS 基础框盒模型（CSS basic box model）对html文档进行渲染，将所有元素表示为一个个矩形的盒子（box）。CSS 决定这些盒子的大小、位置以及属性（例如颜色、背景、边框尺寸…）。</p>
       
     </div>
     
       
         <div class="button readmore">
-          <a href="/apache/enable-apache-https-and-forward-wss/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/database/change-mysql-root-password/">
-      忘记 Mysql root账户密码如何修改
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/mysql/' rel="nofollow">
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>mysql</p>
-    </a>
-  </div>
-
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2018-03-21 23:06</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-  <div class="new-meta-item wordcount">
-    <a class='notlink'>
-      <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：330字</p>
-    </a>
-  </div>
-  <div class="new-meta-item readtime">
-    <a class='notlink'>
-      <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：1分钟</p>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="关闭mysql登录验证"><a href="#关闭mysql登录验证" class="headerlink" title="关闭mysql登录验证"></a>关闭mysql登录验证</h3><p>打开命令行界面 然后输入打开 <em>my.cnf</em> 配置文件的命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/my.cnf</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/database/change-mysql-root-password/">
-            阅读全文 <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/hello-world/">
-      Hello World
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>2018-02-20 12:50</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-  <div class="new-meta-item wordcount">
-    <a class='notlink'>
-      <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：73字</p>
-    </a>
-  </div>
-  <div class="new-meta-item readtime">
-    <a class='notlink'>
-      <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：1分钟</p>
-    </a>
-  </div>
-
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/hello-world/">
+          <a href="/front-end/CSS_Box_Model/">
             阅读全文 <i class="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -928,21 +741,6 @@
     
   </section>
   
-    
-      <br>
-      <div class="prev-next">
-        
-          <a class="prev" rel="prev" href="/">
-            <section class="post prev white-box shadow" >
-              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;
-            </section>
-          </a>
-        
-        <p class="current">
-          2 / 2
-        </p>
-        
-      </div>
     
     <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
     
@@ -950,6 +748,9 @@
 
   
 
+
+    
+  
 
 </div>
 <aside class='l_side'>
